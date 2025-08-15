@@ -1,0 +1,247 @@
+<!-- Enhanced Modern Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out"
+     [class]="isScrolled ? 'bg-white/95 dark:bg-dark-900/95 backdrop-blur-xl shadow-2xl border-b border-gray-200/20 dark:border-gray-700/20' : 'bg-transparent'">
+  
+  <!-- Glass morphism overlay -->
+  <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/90 to-white/80 dark:from-dark-900/80 dark:via-dark-900/90 dark:to-dark-900/80 backdrop-blur-xl"></div>
+  
+  <div class="container-custom relative">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Enhanced Logo Section -->
+      <div class="flex items-center space-x-3 group cursor-pointer" (click)="scrollToSection('home')">
+        <div class="relative">
+          <div class="w-10 h-10 bg-gradient-to-br from-primary-500 via-primary-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+            <span class="text-white font-bold text-lg">BG</span>
+          </div>
+          <!-- Animated ring effect -->
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-primary-400 to-purple-500 opacity-0 group-hover:opacity-20 animate-ping"></div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+            Bhushan Gadekar
+          </span>
+          <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Tech Team Lead</span>
+        </div>
+      </div>
+
+      <!-- Enhanced Desktop Navigation -->
+      <div class="hidden lg:flex items-center space-x-1">
+        <a href="#home" 
+           (click)="scrollToSection('home')"
+           class="nav-link group relative px-4 py-2 rounded-lg font-medium transition-all duration-300"
+           [class.active]="activeSection === 'home'">
+          <span class="relative z-10">Home</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+        </a>
+        
+        <a href="#about" 
+           (click)="scrollToSection('about')"
+           class="nav-link group relative px-4 py-2 rounded-lg font-medium transition-all duration-300"
+           [class.active]="activeSection === 'about'">
+          <span class="relative z-10">About</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+        </a>
+        
+        <a href="#skills" 
+           (click)="scrollToSection('skills')"
+           class="nav-link group relative px-4 py-2 rounded-lg font-medium transition-all duration-300"
+           [class.active]="activeSection === 'skills'">
+          <span class="relative z-10">Skills</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+        </a>
+        
+        <a href="#experience" 
+           (click)="scrollToSection('experience')"
+           class="nav-link group relative px-4 py-2 rounded-lg font-medium transition-all duration-300"
+           [class.active]="activeSection === 'experience'">
+          <span class="relative z-10">Experience</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+        </a>
+        
+        <a href="#projects" 
+           (click)="scrollToSection('projects')"
+           class="nav-link group relative px-4 py-2 rounded-lg font-medium transition-all duration-300"
+           [class.active]="activeSection === 'projects'">
+          <span class="relative z-10">Projects</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+        </a>
+        
+        <a href="#awards" 
+           (click)="scrollToSection('awards')"
+           class="nav-link group relative px-4 py-2 rounded-lg font-medium transition-all duration-300"
+           [class.active]="activeSection === 'awards'">
+          <span class="relative z-10">Awards</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+        </a>
+        
+        <a href="#contact" 
+           (click)="scrollToSection('contact')"
+           class="nav-link group relative px-4 py-2 rounded-lg font-medium transition-all duration-300"
+           [class.active]="activeSection === 'contact'">
+          <span class="relative z-10">Contact</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+        </a>
+      </div>
+
+      <!-- Enhanced Action Buttons -->
+      <div class="flex items-center space-x-3">
+        
+        <!-- Enhanced Theme Toggle -->
+        <button 
+          (click)="toggleTheme()"
+          class="relative p-3 rounded-xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-dark-700 dark:to-dark-600 text-gray-700 dark:text-gray-300 hover:from-gray-200 hover:to-gray-300 dark:hover:from-dark-600 dark:hover:to-dark-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 group">
+          <i *ngIf="!isDarkMode" class="fas fa-moon text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+          <i *ngIf="isDarkMode" class="fas fa-sun text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+          <!-- Glow effect -->
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </button>
+
+        <!-- Enhanced Mobile Menu Button -->
+        <button 
+          (click)="toggleMenu()"
+          class="lg:hidden relative p-3 rounded-xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-dark-700 dark:to-dark-600 text-gray-700 dark:text-gray-300 hover:from-gray-200 hover:to-gray-300 dark:hover:from-dark-600 dark:hover:to-dark-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 group">
+          <div class="relative w-6 h-6">
+            <span class="absolute inset-0 transform transition-all duration-300"
+                  [class]="isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'">
+              <i class="fas fa-bars text-lg"></i>
+            </span>
+            <span class="absolute inset-0 transform transition-all duration-300 opacity-0"
+                  [class]="isMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 rotate-45'">
+              <i class="fas fa-times text-lg"></i>
+            </span>
+          </div>
+          <!-- Glow effect -->
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Enhanced Mobile Navigation -->
+    <div *ngIf="isMenuOpen" 
+         class="lg:hidden py-6 border-t border-gray-200/20 dark:border-gray-700/20 animate-slideDown">
+      <div class="flex flex-col space-y-2">
+        <a href="#home" 
+           (click)="scrollToSection('home')"
+           class="mobile-nav-link group relative px-4 py-3 rounded-xl font-medium transition-all duration-300"
+           [class.active]="activeSection === 'home'">
+          <span class="relative z-10 flex items-center">
+            <i class="fas fa-home mr-3 text-primary-500"></i>
+            Home
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </a>
+        
+        <a href="#about" 
+           (click)="scrollToSection('about')"
+           class="mobile-nav-link group relative px-4 py-3 rounded-xl font-medium transition-all duration-300"
+           [class.active]="activeSection === 'about'">
+          <span class="relative z-10 flex items-center">
+            <i class="fas fa-user mr-3 text-primary-500"></i>
+            About
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </a>
+        
+        <a href="#skills" 
+           (click)="scrollToSection('skills')"
+           class="mobile-nav-link group relative px-4 py-3 rounded-xl font-medium transition-all duration-300"
+           [class.active]="activeSection === 'skills'">
+          <span class="relative z-10 flex items-center">
+            <i class="fas fa-code mr-3 text-primary-500"></i>
+            Skills
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </a>
+        
+        <a href="#experience" 
+           (click)="scrollToSection('experience')"
+           class="mobile-nav-link group relative px-4 py-3 rounded-xl font-medium transition-all duration-300"
+           [class.active]="activeSection === 'experience'">
+          <span class="relative z-10 flex items-center">
+            <i class="fas fa-briefcase mr-3 text-primary-500"></i>
+            Experience
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </a>
+        
+        <a href="#projects" 
+           (click)="scrollToSection('projects')"
+           class="mobile-nav-link group relative px-4 py-3 rounded-xl font-medium transition-all duration-300"
+           [class.active]="activeSection === 'projects'">
+          <span class="relative z-10 flex items-center">
+            <i class="fas fa-project-diagram mr-3 text-primary-500"></i>
+            Projects
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </a>
+        
+        <a href="#awards" 
+           (click)="scrollToSection('awards')"
+           class="mobile-nav-link group relative px-4 py-3 rounded-xl font-medium transition-all duration-300"
+           [class.active]="activeSection === 'awards'">
+          <span class="relative z-10 flex items-center">
+            <i class="fas fa-trophy mr-3 text-primary-500"></i>
+            Awards
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </a>
+        
+        <a href="#contact" 
+           (click)="scrollToSection('contact')"
+           class="mobile-nav-link group relative px-4 py-3 rounded-xl font-medium transition-all duration-300"
+           [class.active]="activeSection === 'contact'">
+          <span class="relative z-10 flex items-center">
+            <i class="fas fa-envelope mr-3 text-primary-500"></i>
+            Contact
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="pt-20">
+  <!-- Hero Section -->
+  <app-hero></app-hero>
+
+  <!-- About Section -->
+  <app-about></app-about>
+
+  <!-- Skills Section -->
+  <app-skills></app-skills>
+
+  <!-- Experience Section -->
+  <app-experience></app-experience>
+
+  <!-- Projects Section -->
+  <app-projects></app-projects>
+
+  <!-- Awards Section -->
+  <app-awards></app-awards>
+
+  <!-- Contact Section -->
+  <app-contact></app-contact>
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+</main>
+
+<!-- Enhanced Scroll to Top Button -->
+<button 
+  *ngIf="isScrolled"
+  (click)="scrollToSection('home')"
+  class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-primary-500 via-primary-600 to-purple-600 text-white rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 z-40 group">
+  <i class="fas fa-arrow-up text-lg group-hover:animate-bounce"></i>
+  <!-- Glow effect -->
+  <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-400/30 to-purple-400/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</button>

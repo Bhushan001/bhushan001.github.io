@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bhushan Gadekar - Tech Team Lead Portfolio</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Bhushan Gadekar - Tech Team Lead with 10+ years of experience building scalable web applications and microservices. Expert in Angular, React, Spring Boot, and DevOps.">
+  <meta name="keywords" content="Bhushan Gadekar, Tech Team Lead, Full-Stack Developer, Angular Developer, React Developer, Spring Boot, DevOps, Pune, India">
+  <meta name="author" content="Bhushan Gadekar">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Bhushan Gadekar - Tech Team Lead Portfolio">
+  <meta property="og:description" content="Tech Team Lead with 10+ years of experience building scalable web applications and microservices. Expert in Angular, React, Spring Boot, and DevOps.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bhushangadekar.com">
+  <meta property="og:image" content="https://bhushangadekar.com/assets/images/og-image.jpg">
+  <meta property="og:site_name" content="Bhushan Gadekar Portfolio">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bhushan Gadekar - Tech Team Lead Portfolio">
+  <meta name="twitter:description" content="Tech Team Lead with 10+ years of experience building scalable web applications and microservices.">
+  <meta name="twitter:image" content="https://bhushangadekar.com/assets/images/twitter-card.jpg">
+  
+  <!-- LinkedIn Meta Tags -->
+  <meta property="linkedin:title" content="Bhushan Gadekar - Tech Team Lead Portfolio">
+  <meta property="linkedin:description" content="Tech Team Lead with 10+ years of experience building scalable web applications and microservices.">
+  
+  <!-- Additional Meta Tags -->
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <meta name="distribution" content="global">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="assets/icons/site.webmanifest">
+  
+  <!-- Preconnect to external domains for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bhushan Gadekar",
+    "jobTitle": "Tech Team Lead",
+    "description": "Tech Team Lead with 10+ years of experience building scalable web applications and microservices",
+    "url": "https://bhushangadekar.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/bhushangadekar01/",
+      "https://github.com/Bhushan001",
+              "https://stackoverflow.com/users/4460894/bhushan-gadekar"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "CRIF Solutions"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "India"
+    },
+    "knowsAbout": [
+      "Angular",
+      "React",
+      "Spring Boot",
+      "Java",
+      "TypeScript",
+      "JavaScript",
+      "Docker",
+      "Jenkins",
+      "AWS",
+      "DevOps"
+    ]
+  }
+  </script>
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#3b82f6">
+  <meta name="msapplication-TileColor" content="#3b82f6">
+  
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  
+  <!-- Performance -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+</head>
+<body>
+  <app-root></app-root>
+  
+  <!-- Loading indicator -->
+  <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; display: flex; justify-content: center; align-items: center; z-index: 9999;">
+    <div style="text-align: center;">
+      <div style="width: 50px; height: 50px; border: 3px solid #f3f4f6; border-top: 3px solid #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+      <p style="color: #6b7280; font-family: 'Inter', sans-serif;">Loading Bhushan Gadekar's Portfolio...</p>
+    </div>
+  </div>
+  
+  <style>
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .dark #loading {
+      background: #0f172a;
+    }
+    
+    html.dark #loading {
+      background: #0f172a;
+    }
+    
+    .dark #loading p {
+      color: #9ca3af;
+    }
+    
+    html.dark #loading p {
+      color: #9ca3af;
+    }
+  </style>
+  
+  <script>
+    // Apply theme immediately to prevent flash
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+      
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        document.body.classList.add('dark');
+      }
+    })();
+    
+    // Hide loading indicator when app is ready
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loading = document.getElementById('loading');
+        if (loading) {
+          loading.style.opacity = '0';
+          loading.style.transition = 'opacity 0.5s ease';
+          setTimeout(function() {
+            loading.style.display = 'none';
+          }, 500);
+        }
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

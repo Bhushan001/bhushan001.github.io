@@ -1,0 +1,76 @@
+<section id="skills" class="py-20 bg-white dark:bg-dark-900">
+  <div class="container-custom">
+  <!-- Section Header -->
+  <div class="text-center mb-16">
+    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+      My <span class="text-gradient">Skills</span>
+    </h2>
+    <div class="w-24 h-1 bg-gradient-to-r from-primary-600 to-purple-600 mx-auto rounded-full"></div>
+  </div>
+
+  <!-- Skills Categories -->
+  <div class="grid lg:grid-cols-2 gap-8">
+    <div *ngFor="let category of Object.keys(skillCategories)" class="skill-card card">
+      <!-- Category Header -->
+      <div class="flex items-center mb-6">
+        <div class="w-12 h-12 rounded-lg bg-gradient-to-r {{ getCategoryColor(category) }} flex items-center justify-center mr-4">
+          <i [class]="getCategoryIcon(category) + ' text-white text-xl'"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ category }}</h3>
+      </div>
+
+      <!-- Skills List -->
+      <div class="space-y-4">
+        <div *ngFor="let skill of skillCategories[category]" class="skill-item">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center space-x-3">
+              <i [class]="skill.icon + ' text-lg'" [style.color]="skill.color"></i>
+              <span class="font-medium text-gray-900 dark:text-white">{{ skill.name }}</span>
+            </div>
+            <span class="text-sm font-semibold text-primary-600 dark:text-primary-400">
+              {{ skill.proficiency }}%
+            </span>
+          </div>
+          
+          <!-- Progress Bar -->
+          <div class="w-full bg-gray-200 dark:bg-dark-600 rounded-full h-2 overflow-hidden">
+            <div class="skill-bar h-2 rounded-full transition-all duration-1000 ease-out"
+                 [style.background]="skill.color"
+                 [style.width]="'0%'"
+                 [attr.data-progress]="skill.proficiency">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills Summary -->
+  <div class="mt-16">
+    <div class="card text-center">
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+        <i class="fas fa-chart-line text-primary-600 mr-3"></i>
+        Skills Overview
+      </h3>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-primary-600 mb-2">{{ skills.length }}</div>
+          <div class="text-gray-600 dark:text-gray-400">Total Skills</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-green-600 mb-2">{{ Object.keys(skillCategories).length }}</div>
+          <div class="text-gray-600 dark:text-gray-400">Categories</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-blue-600 mb-2">{{ getExpertLevelCount() }}</div>
+          <div class="text-gray-600 dark:text-gray-400">Expert Level</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-purple-600 mb-2">{{ getAdvancedLevelCount() }}</div>
+          <div class="text-gray-600 dark:text-gray-400">Advanced Level</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

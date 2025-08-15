@@ -1,0 +1,221 @@
+<section id="contact" class="py-20 bg-gray-50 dark:bg-dark-800">
+  <div class="container-custom">
+    <!-- Section Header -->
+    <div class="text-center mb-16 contact-animate">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        Get In <span class="text-gradient">Touch</span>
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-primary-600 to-purple-600 mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+      <!-- Contact Form -->
+      <div class="contact-animate">
+        <div class="card">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            <i class="fas fa-envelope text-primary-600 mr-3"></i>
+            Send Message
+          </h3>
+
+          <form (ngSubmit)="onSubmit()" class="space-y-6">
+            <!-- Name Field -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Full Name *
+              </label>
+              <input 
+                type="text" 
+                id="name"
+                [(ngModel)]="contactForm.name"
+                name="name"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-700 dark:text-white transition-colors"
+                placeholder="Enter your full name"
+                required>
+            </div>
+
+            <!-- Email Field -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Email Address *
+              </label>
+              <input 
+                type="email" 
+                id="email"
+                [(ngModel)]="contactForm.email"
+                name="email"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-700 dark:text-white transition-colors"
+                placeholder="Enter your email address"
+                required>
+            </div>
+
+            <!-- Subject Field -->
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Subject *
+              </label>
+              <input 
+                type="text" 
+                id="subject"
+                [(ngModel)]="contactForm.subject"
+                name="subject"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-700 dark:text-white transition-colors"
+                placeholder="Enter subject"
+                required>
+            </div>
+
+            <!-- Message Field -->
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Message *
+              </label>
+              <textarea 
+                id="message"
+                [(ngModel)]="contactForm.message"
+                name="message"
+                rows="5"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-700 dark:text-white transition-colors resize-none"
+                placeholder="Enter your message"
+                required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button 
+              type="submit"
+              [disabled]="isSubmitting"
+              class="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-semibold rounded-lg hover:from-primary-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2">
+              <i *ngIf="!isSubmitting" class="fas fa-paper-plane"></i>
+              <i *ngIf="isSubmitting" class="fas fa-spinner fa-spin"></i>
+              <span>{{ isSubmitting ? 'Sending...' : 'Send Message' }}</span>
+            </button>
+          </form>
+
+          <!-- Success/Error Messages -->
+          <div *ngIf="submitSuccess" class="mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-lg">
+            <i class="fas fa-check-circle mr-2"></i>
+            Thank you! Your message has been sent successfully.
+          </div>
+
+          <div *ngIf="submitError" class="mt-4 p-4 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-lg">
+            <i class="fas fa-exclamation-circle mr-2"></i>
+            Please fill in all required fields correctly.
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="contact-animate">
+        <div class="space-y-6">
+          <!-- Contact Info Cards -->
+          <div class="contact-info-card card">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <i class="fas fa-address-card text-primary-600 mr-3"></i>
+              Contact Information
+            </h3>
+
+            <div class="space-y-4">
+              <!-- Email -->
+              <div class="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-dark-700 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-600 transition-colors cursor-pointer"
+                   (click)="openEmail()">
+                <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center">
+                  <i class="fas fa-envelope text-primary-600 text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 dark:text-white">Email</h4>
+                  <p class="text-gray-600 dark:text-gray-400">{{ contactInfo?.email }}</p>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-dark-700 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-600 transition-colors cursor-pointer"
+                   (click)="openPhone()">
+                <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                  <i class="fas fa-phone text-green-600 text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 dark:text-white">Phone</h4>
+                  <p class="text-gray-600 dark:text-gray-400">{{ contactInfo?.phone }}</p>
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div class="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-dark-700 rounded-lg">
+                <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
+                  <i class="fas fa-map-marker-alt text-purple-600 text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 dark:text-white">Location</h4>
+                  <p class="text-gray-600 dark:text-gray-400">Pune, Maharashtra, India</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="contact-info-card card">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <i class="fas fa-share-alt text-primary-600 mr-3"></i>
+              Social Links
+            </h3>
+
+            <div class="grid grid-cols-2 gap-4">
+              <!-- LinkedIn -->
+              <button 
+                (click)="openLinkedIn()"
+                class="flex items-center space-x-3 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors">
+                <i class="fab fa-linkedin text-blue-600 text-xl"></i>
+                <span class="font-medium text-gray-900 dark:text-white">LinkedIn</span>
+              </button>
+
+              <!-- GitHub -->
+              <button 
+                (click)="openGitHub()"
+                class="flex items-center space-x-3 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                <i class="fab fa-github text-gray-800 dark:text-gray-300 text-xl"></i>
+                <span class="font-medium text-gray-900 dark:text-white">GitHub</span>
+              </button>
+
+              <!-- Stack Overflow -->
+              <button 
+                (click)="openStackOverflow()"
+                class="flex items-center space-x-3 p-4 bg-orange-50 dark:bg-orange-900 rounded-lg hover:bg-orange-100 dark:hover:bg-orange-800 transition-colors">
+                <i class="fab fa-stack-overflow text-orange-600 text-xl"></i>
+                <span class="font-medium text-gray-900 dark:text-white">Stack Overflow</span>
+              </button>
+
+              <!-- Resume -->
+              <button 
+                (click)="downloadResume()"
+                class="flex items-center space-x-3 p-4 bg-green-50 dark:bg-green-900 rounded-lg hover:bg-green-100 dark:hover:bg-green-800 transition-colors">
+                <i class="fas fa-file-pdf text-green-600 text-xl"></i>
+                <span class="font-medium text-gray-900 dark:text-white">Resume</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Availability -->
+          <div class="contact-info-card card">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <i class="fas fa-clock text-primary-600 mr-3"></i>
+              Availability
+            </h3>
+
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-700 dark:text-gray-300">Available for:</span>
+                <span class="font-semibold text-primary-600">Full-time positions</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-700 dark:text-gray-300">Remote work:</span>
+                <span class="font-semibold text-green-600">Available</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-700 dark:text-gray-300">Relocation:</span>
+                <span class="font-semibold text-blue-600">Open to discuss</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

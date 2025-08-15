@@ -1,0 +1,149 @@
+<section id="projects" class="py-20 bg-white dark:bg-dark-900">
+  <div class="container-custom">
+  <!-- Section Header -->
+  <div class="text-center mb-16">
+    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+      Featured <span class="text-gradient">Projects</span>
+    </h2>
+    <div class="w-24 h-1 bg-gradient-to-r from-primary-600 to-purple-600 mx-auto rounded-full"></div>
+  </div>
+
+  <!-- Category Filter -->
+  <div class="flex flex-wrap justify-center gap-4 mb-12">
+    <button *ngFor="let category of categories" 
+            (click)="filterProjects(category)"
+            class="px-6 py-3 rounded-full font-medium transition-all duration-300"
+            [class]="selectedCategory === category ? 
+                     'bg-primary-600 text-white shadow-lg' : 
+                     'bg-gray-100 dark:bg-dark-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-600'">
+      {{ category }}
+    </button>
+  </div>
+
+  <!-- Projects Grid -->
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div *ngFor="let project of filteredProjects" 
+         class="project-card card group overflow-hidden">
+      
+      <!-- Project Image -->
+      <div class="relative overflow-hidden rounded-t-xl h-48 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-dark-700 dark:to-dark-600">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-32 h-32 flex items-center justify-center" [innerHTML]="getProjectThumbnail(project.category) | safeHtml"></div>
+        </div>
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <div class="flex space-x-4">
+            <button *ngIf="project.githubUrl" 
+                    (click)="openProject(project.githubUrl)"
+                    class="px-4 py-2 bg-gray-800 text-white rounded-lg font-medium hover:bg-gray-900 transition-colors">
+              <i class="fab fa-github mr-2"></i>
+              Code
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Content -->
+      <div class="p-6">
+        <!-- Project Header -->
+        <div class="mb-4">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+            {{ project.name }}
+          </h3>
+          <span class="inline-block px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs font-medium rounded-full">
+            {{ project.category }}
+          </span>
+        </div>
+
+        <!-- Project Description -->
+        <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+          {{ project.description }}
+        </p>
+
+        <!-- Project Features -->
+        <div class="mb-4">
+          <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+            <i class="fas fa-star text-yellow-500 mr-2"></i>
+            Key Features
+          </h4>
+          <ul class="space-y-1">
+            <li *ngFor="let feature of project.features.slice(0, 3)" 
+                class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+              <i class="fas fa-check text-green-500 mr-2 text-xs"></i>
+              {{ feature }}
+            </li>
+            <li *ngIf="project.features.length > 3" 
+                class="text-sm text-gray-500 dark:text-gray-500">
+              +{{ project.features.length - 3 }} more features
+            </li>
+          </ul>
+        </div>
+
+        <!-- Technologies Used -->
+        <div class="mb-4">
+          <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+            <i class="fas fa-code text-primary-600 mr-2"></i>
+            Technologies
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            <span *ngFor="let tech of project.technologies.slice(0, 4)" 
+                  class="px-2 py-1 bg-gray-100 dark:bg-dark-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded">
+              {{ tech }}
+            </span>
+            <span *ngIf="project.technologies.length > 4" 
+                  class="px-2 py-1 bg-gray-100 dark:bg-dark-700 text-gray-500 dark:text-gray-500 text-xs font-medium rounded">
+              +{{ project.technologies.length - 4 }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Project Actions -->
+        <div class="flex justify-between items-center pt-4 border-t border-gray-200 dark:border-dark-600">
+          <div class="flex space-x-2">
+            <button *ngIf="project.githubUrl" 
+                    (click)="openProject(project.githubUrl)"
+                    class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-medium text-sm transition-colors">
+              <i class="fab fa-github mr-1"></i>
+              Source Code
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Projects Message -->
+  <div *ngIf="filteredProjects.length === 0" class="text-center py-12">
+    <i class="fas fa-folder-open text-4xl text-gray-400 dark:text-gray-500 mb-4"></i>
+    <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">No projects found</h3>
+    <p class="text-gray-500 dark:text-gray-400">No projects match the selected category.</p>
+  </div>
+
+  <!-- Projects Summary -->
+  <div class="mt-16">
+    <div class="card text-center">
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+        <i class="fas fa-chart-pie text-primary-600 mr-3"></i>
+        Projects Overview
+      </h3>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-primary-600 mb-2">{{ projects.length }}</div>
+          <div class="text-gray-600 dark:text-gray-400">Total Projects</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-green-600 mb-2">{{ getLiveDemosCount() }}</div>
+          <div class="text-gray-600 dark:text-gray-400">Live Demos</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-blue-600 mb-2">{{ getOpenSourceCount() }}</div>
+          <div class="text-gray-600 dark:text-gray-400">Open Source</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-purple-600 mb-2">{{ getCategoriesCount() }}</div>
+          <div class="text-gray-600 dark:text-gray-400">Categories</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

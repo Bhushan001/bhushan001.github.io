@@ -1,0 +1,65 @@
+// Enhanced Navbar Styles
+
+// Navigation link styles
+.nav-link {
+  @apply text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400;
+  
+  &.active {
+    @apply text-primary-600 dark:text-primary-400 font-semibold;
+    
+    &::after {
+      content: '';
+      @apply absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary-500 to-purple-500;
+    }
+  }
+}
+
+// Mobile navigation link styles
+.mobile-nav-link {
+  @apply text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400;
+  
+  &.active {
+    @apply text-primary-600 dark:text-primary-400 font-semibold bg-gradient-to-r from-primary-500/10 to-purple-500/10;
+  }
+}
+
+// Slide down animation for mobile menu
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
+
+// Enhanced scroll to top button
+.shadow-3xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+// Focus states for accessibility
+.nav-link:focus,
+.mobile-nav-link:focus,
+button:focus {
+  @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-white dark:ring-offset-dark-900;
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  nav {
+    @apply h-16;
+  }
+}
+
+@media (min-width: 641px) {
+  nav {
+    @apply h-20;
+  }
+}

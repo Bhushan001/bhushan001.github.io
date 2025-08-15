@@ -43,6 +43,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.setupIntersectionObserver();
+    this.updateNavbarTextColor();
   }
 
   ngOnDestroy() {
@@ -102,6 +103,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       document.documentElement.classList.remove('dark');
       document.body.classList.remove('dark');
+    }
+    
+    // Update navbar text color
+    this.updateNavbarTextColor();
+  }
+
+  private updateNavbarTextColor() {
+    const navbarName = document.querySelector('.navbar-name') as HTMLElement;
+    if (navbarName) {
+      if (this.isDarkMode) {
+        navbarName.style.color = '#ffffff';
+      } else {
+        navbarName.style.color = '#111827';
+      }
     }
   }
 

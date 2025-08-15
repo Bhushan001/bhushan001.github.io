@@ -14,6 +14,64 @@
   }
 }
 
+// Ensure navbar text visibility in dark mode - HIGH SPECIFICITY
+nav.dark .text-gray-900,
+.dark nav .text-gray-900,
+html.dark nav .text-gray-900 {
+  color: #ffffff !important;
+}
+
+nav.dark .text-gray-700,
+.dark nav .text-gray-700,
+html.dark nav .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+nav.dark .text-gray-500,
+.dark nav .text-gray-500,
+html.dark nav .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+// Force Bhushan Gadekar text visibility in dark mode - ULTRA HIGH SPECIFICITY
+nav.dark .text-xl.font-bold.text-gray-900.dark\\:text-white,
+.dark nav .text-xl.font-bold.text-gray-900.dark\\:text-white,
+html.dark nav .text-xl.font-bold.text-gray-900.dark\\:text-white {
+  color: #ffffff !important;
+}
+
+// Alternative selector for the name text - ULTRA HIGH SPECIFICITY
+nav.dark span.text-xl.font-bold,
+.dark nav span.text-xl.font-bold,
+html.dark nav span.text-xl.font-bold {
+  color: #ffffff !important;
+}
+
+// Specific rule for the navbar name - ULTRA HIGH SPECIFICITY
+nav.dark .navbar-name,
+.dark nav .navbar-name,
+html.dark nav .navbar-name {
+  color: #ffffff !important;
+}
+
+// Override any hero component styles that might affect navbar
+nav.dark .navbar-name,
+.dark nav .navbar-name,
+html.dark nav .navbar-name {
+  color: #ffffff !important;
+}
+
+// Force navbar text to be visible regardless of other component overrides
+nav .navbar-name {
+  color: #111827 !important;
+}
+
+nav.dark .navbar-name,
+.dark nav .navbar-name,
+html.dark nav .navbar-name {
+  color: #ffffff !important;
+}
+
 // Force visible text on mobile navbar
 @media (max-width: 640px) {
   .nav-link {
@@ -40,6 +98,15 @@
   .dark .nav-link.active {
     color: #60a5fa !important; // Light blue for active state in dark mode
     font-weight: 600 !important;
+  }
+  
+  // Ensure logo text is visible in dark mode on mobile
+  .dark .text-xl.font-bold {
+    color: #ffffff !important;
+  }
+  
+  .dark .text-xs.text-gray-500 {
+    color: #9ca3af !important;
   }
 }
 

@@ -1,9 +1,9 @@
 <!-- Enhanced Modern Navigation -->
-<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out"
-     [class]="isScrolled ? 'bg-white/95 dark:bg-dark-900/95 backdrop-blur-xl shadow-2xl border-b border-gray-200/20 dark:border-gray-700/20' : 'bg-transparent'">
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out bg-white dark:bg-dark-900 shadow-lg border-b border-gray-200 dark:border-gray-700 lg:bg-transparent lg:shadow-none lg:border-b-0"
+     [class]="isScrolled ? 'lg:bg-white/95 lg:dark:bg-dark-900/95 lg:backdrop-blur-xl lg:shadow-2xl lg:border-b lg:border-gray-200/20 lg:dark:border-gray-700/20' : ''">
   
-  <!-- Glass morphism overlay -->
-  <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/90 to-white/80 dark:from-dark-900/80 dark:via-dark-900/90 dark:to-dark-900/80 backdrop-blur-xl"></div>
+  <!-- Glass morphism overlay - only on desktop -->
+  <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/90 to-white/80 dark:from-dark-900/80 dark:via-dark-900/90 dark:to-dark-900/80 backdrop-blur-xl lg:block hidden"></div>
   
   <div class="container-custom relative">
     <div class="flex items-center justify-between h-20">
@@ -126,7 +126,7 @@
 
     <!-- Enhanced Mobile Navigation -->
     <div *ngIf="isMenuOpen" 
-         class="lg:hidden py-6 border-t border-gray-200/20 dark:border-gray-700/20 animate-slideDown">
+         class="lg:hidden py-6 border-t border-gray-200/20 dark:border-gray-700/20 animate-slideDown bg-white dark:bg-dark-900 shadow-lg">
       <div class="flex flex-col space-y-2">
         <a href="#home" 
            (click)="scrollToSection('home')"

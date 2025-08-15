@@ -54,22 +54,25 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
     footerElements.forEach(element => observer.observe(element));
 
-    // Animate social links
-    gsap.fromTo('.social-link', 
-      {
-        opacity: 0,
-        scale: 0,
-        rotation: -180
-      },
-      {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'back.out(1.7)'
-      }
-    );
+    // Animate social links - only if they exist
+    const socialLinks = document.querySelectorAll('.social-link');
+    if (socialLinks.length > 0) {
+      gsap.fromTo('.social-link', 
+        {
+          opacity: 0,
+          scale: 0,
+          rotation: -180
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'back.out(1.7)'
+        }
+      );
+    }
   }
 
   scrollToSection(sectionId: string) {

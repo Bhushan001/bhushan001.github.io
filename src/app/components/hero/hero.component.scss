@@ -1,11 +1,12 @@
 // Hero section styles - same in both modes
 .hero-section {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   overflow: hidden;
+  padding-top: 4.25rem; // Reduced top padding to move BG circle up by ~20px
   
   // Force light mode colors regardless of theme
   color: #374151 !important;
@@ -110,11 +111,13 @@ html.dark .hero-background {
 // Responsive design
 @media (max-width: 768px) {
   .hero-section {
-    padding: 2rem 1rem;
+    padding: 6rem 1rem 2rem 1rem; // Adjusted top padding for new layout
+    min-height: 100vh; // Ensure full height
   }
   
   .hero-title {
     font-size: 2.5rem;
+    margin-top: 2rem; // Additional top margin for mobile
   }
   
   .hero-subtitle {
@@ -123,6 +126,47 @@ html.dark .hero-background {
   
   .hero-description {
     font-size: 1rem;
+  }
+  
+  // Profile image spacing for mobile - more specific targeting
+  .hero-section .mb-8 {
+    margin-top: 1rem !important; // Reduced margin to move BG circle up
+  }
+  
+  // Target the BG circle specifically
+  .hero-section .w-32.h-32 {
+    margin-top: 0 !important; // Remove margin to move BG circle up
+  }
+}
+
+// Extra small mobile devices
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 5rem 1rem 2rem 1rem; // Adjusted top padding for new layout
+    min-height: 100vh; // Ensure full height
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero-description {
+    font-size: 0.9rem;
+  }
+  
+  // Profile image spacing for very small mobile - more specific targeting
+  .hero-section .mb-8 {
+    margin-top: 0.5rem !important; // Reduced margin to move BG circle up
+  }
+  
+  // Target the BG circle specifically
+  .hero-section .w-32.h-32 {
+    margin-top: 0 !important; // Remove margin to move BG circle up
   }
 }
 

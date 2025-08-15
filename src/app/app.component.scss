@@ -14,6 +14,35 @@
   }
 }
 
+// Force visible text on mobile navbar
+@media (max-width: 640px) {
+  .nav-link {
+    color: #374151 !important; // Dark gray for light mode
+  }
+  
+  .dark .nav-link {
+    color: #d1d5db !important; // Light gray for dark mode
+  }
+  
+  .nav-link:hover {
+    color: #2563eb !important; // Blue on hover
+  }
+  
+  .dark .nav-link:hover {
+    color: #60a5fa !important; // Light blue on hover in dark mode
+  }
+  
+  .nav-link.active {
+    color: #2563eb !important; // Blue for active state
+    font-weight: 600 !important;
+  }
+  
+  .dark .nav-link.active {
+    color: #60a5fa !important; // Light blue for active state in dark mode
+    font-weight: 600 !important;
+  }
+}
+
 // Mobile navigation link styles
 .mobile-nav-link {
   @apply text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400;
@@ -39,6 +68,19 @@
   animation: slideDown 0.3s ease-out;
 }
 
+// Mobile dropdown background
+@media (max-width: 1023px) {
+  .lg\\:hidden {
+    background-color: white !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  }
+  
+  .dark .lg\\:hidden {
+    background-color: #0f172a !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+  }
+}
+
 // Enhanced scroll to top button
 .shadow-3xl {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -55,11 +97,138 @@ button:focus {
 @media (max-width: 640px) {
   nav {
     @apply h-16;
+    background-color: white !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 1px solid #e5e7eb !important;
+  }
+  
+  .dark nav {
+    background-color: #0f172a !important;
+    border-bottom: 1px solid #334155 !important;
+  }
+  
+  // Smaller logo and text for mobile
+  .w-10.h-10 {
+    @apply w-8 h-8;
+  }
+  
+  .text-xl {
+    @apply text-lg;
+  }
+  
+  // Adjust spacing for mobile
+  .space-x-3 {
+    gap: 0.75rem;
+  }
+  
+  // Maintain button styling for mobile
+  .p-3 {
+    padding: 0.75rem;
+  }
+  
+  // Adjust container padding for mobile
+  .container-custom {
+    @apply px-4;
+  }
+}
+
+@media (max-width: 480px) {
+  // Even smaller adjustments for very small screens
+  .w-10.h-10 {
+    @apply w-7 h-7;
+  }
+  
+  .text-xl {
+    @apply text-base;
+  }
+  
+  // Hide subtitle on very small screens
+  .text-xs.text-gray-500 {
+    @apply hidden;
+  }
+  
+  // Maintain button spacing
+  .space-x-3 {
+    gap: 0.5rem;
+  }
+  
+  // Even smaller buttons for very small screens but still stylish
+  button[class*="p-3"] {
+    @apply p-1.5 rounded-xl shadow-lg transition-all duration-300;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+  }
+  
+  // Ensure icons are still properly sized
+  button[class*="p-3"] i {
+    @apply text-sm;
   }
 }
 
 @media (min-width: 641px) {
   nav {
     @apply h-20;
+  }
+}
+
+// Force solid background on mobile navbar
+@media (max-width: 640px) {
+  nav,
+  nav.bg-transparent,
+  nav.bg-white\/95,
+  nav.bg-dark-900\/95 {
+    background-color: white !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 1px solid #e5e7eb !important;
+  }
+  
+  .dark nav,
+  .dark nav.bg-transparent,
+  .dark nav.bg-white\/95,
+  .dark nav.bg-dark-900\/95 {
+    background-color: #0f172a !important;
+    border-bottom: 1px solid #334155 !important;
+  }
+  
+  // Enhanced mobile button styling
+  button[class*="p-3"] {
+    @apply p-2 rounded-xl shadow-lg transition-all duration-300;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -3px;
+  }
+  
+  .dark button[class*="p-3"] {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+  }
+  
+  button[class*="p-3"]:hover {
+    @apply transform scale-105 shadow-xl;
+    background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+  }
+  
+  .dark button[class*="p-3"]:hover {
+    background: linear-gradient(135deg, #334155 0%, #475569 100%);
+  }
+  
+  // Ensure proper icon sizing in mobile buttons
+  button[class*="p-3"] i {
+    @apply text-base;
+  }
+  
+  // Mobile menu button specific styling
+  button[class*="lg:hidden"] {
+    @apply relative;
+  }
+  
+  button[class*="lg:hidden"] .relative.w-6.h-6 {
+    width: 1rem;
+    height: 1rem;
   }
 }

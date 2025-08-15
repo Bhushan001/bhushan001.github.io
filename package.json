@@ -8,8 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:prod": "ng build --configuration production",
-    "deploy": "ng deploy --base-href=https://bhushangadekar.github.io/",
-    "deploy:gh-pages": "ng deploy --base-href=https://bhushangadekar.github.io/"
+    "deploy": "ng deploy --base-href=https://bhushan001.github.io/",
+    "deploy:gh-pages": "ng deploy --base-href=https://bhushan001.github.io/"
   },
   "private": true,
   "dependencies": {

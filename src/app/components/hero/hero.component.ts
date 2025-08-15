@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioService } from '../../shared/services/portfolio.service';
 import { PersonalInfo } from '../../shared/models/portfolio.models';
-import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-hero',
@@ -30,49 +29,7 @@ export class HeroComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.initHeroAnimations();
-  }
-
-  private initHeroAnimations() {
-    // Hero section entrance animation
-    const tl = gsap.timeline();
-    
-    tl.from('.hero-title', {
-      duration: 1,
-      y: 50,
-      opacity: 0,
-      ease: 'power2.out'
-    })
-    .from('.hero-subtitle', {
-      duration: 0.8,
-      y: 30,
-      opacity: 0,
-      ease: 'power2.out'
-    }, '-=0.5')
-    .from('.hero-description', {
-      duration: 0.8,
-      y: 30,
-      opacity: 0,
-      ease: 'power2.out'
-    }, '-=0.3')
-    .from('.hero-buttons', {
-      duration: 0.8,
-      y: 30,
-      opacity: 0,
-      ease: 'power2.out'
-    }, '-=0.3');
-
-    // Parallax effect on scroll
-    gsap.to('.hero-background', {
-      yPercent: -50,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
+    // Only keep typing animation, remove other animations
   }
 
   private startTextAnimation() {

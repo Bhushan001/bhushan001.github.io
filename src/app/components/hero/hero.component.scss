@@ -63,24 +63,21 @@ html.dark .hero-background {
   background-clip: text;
 }
 
-// Hero content animations
+// Hero content - visible from start
 .hero-title {
-  animation: fadeInUp 1s ease-out;
   color: #111827 !important; // Force dark text
 }
 
 .hero-subtitle {
-  animation: fadeInUp 1s ease-out 0.2s both;
   color: #374151 !important; // Force dark text
 }
 
 .hero-description {
-  animation: fadeInUp 1s ease-out 0.4s both;
   color: #6b7280 !important; // Force gray text
 }
 
 .hero-buttons {
-  animation: fadeInUp 1s ease-out 0.6s both;
+  /* No animation - visible immediately */
 }
 
 @keyframes fadeInUp {
@@ -316,6 +313,90 @@ html.dark .hero-section p,
 html.dark .hero-section span,
 html.dark .hero-section div {
   color: inherit !important;
+}
+
+// Force light mode for description text specifically
+.dark .hero-section .hero-description,
+.dark .hero-section p.hero-description {
+  color: #6b7280 !important;
+  background-color: transparent !important;
+}
+
+html.dark .hero-section .hero-description,
+html.dark .hero-section p.hero-description {
+  color: #6b7280 !important;
+  background-color: transparent !important;
+}
+
+// Force light mode for all text content in hero section
+.dark .hero-section .text-gray-600 {
+  color: #6b7280 !important;
+}
+
+html.dark .hero-section .text-gray-600 {
+  color: #6b7280 !important;
+}
+
+// Force light mode for all button text
+.dark .hero-section button span,
+.dark .hero-section button i {
+  color: inherit !important;
+}
+
+html.dark .hero-section button span,
+html.dark .hero-section button i {
+  color: inherit !important;
+}
+
+// Comprehensive override for all text elements in hero section
+.dark .hero-section * {
+  color: inherit !important;
+}
+
+html.dark .hero-section * {
+  color: inherit !important;
+}
+
+// Force specific colors for different text types
+.dark .hero-section .text-gray-900 {
+  color: #111827 !important;
+}
+
+html.dark .hero-section .text-gray-900 {
+  color: #111827 !important;
+}
+
+.dark .hero-section .text-gray-700 {
+  color: #374151 !important;
+}
+
+html.dark .hero-section .text-gray-700 {
+  color: #374151 !important;
+}
+
+.dark .hero-section .text-gray-600 {
+  color: #6b7280 !important;
+}
+
+html.dark .hero-section .text-gray-600 {
+  color: #6b7280 !important;
+}
+
+// Force button colors
+.dark .hero-section .text-white {
+  color: white !important;
+}
+
+html.dark .hero-section .text-white {
+  color: white !important;
+}
+
+.dark .hero-section .text-blue-600 {
+  color: #2563eb !important;
+}
+
+html.dark .hero-section .text-blue-600 {
+  color: #2563eb !important;
 }
 
 // Specific button overrides for both modes

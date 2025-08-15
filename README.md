@@ -22,8 +22,8 @@ A modern, responsive portfolio website built with Angular 19, Tailwind CSS, and 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/bhushangadekar/bhushan-portfolio.git
-cd bhushan-portfolio
+git clone https://github.com/bhushangadekar/bhushangadekar.github.io.git
+cd bhushangadekar.github.io
 ```
 
 2. Install dependencies:
@@ -141,4 +141,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Bhushan Gadekar - [LinkedIn](https://linkedin.com/in/bhushangadekar) - bhushangadekar@example.com
 
-Project Link: [https://github.com/bhushangadekar/bhushan-portfolio](https://github.com/bhushangadekar/bhushan-portfolio)
+Project Link: [https://github.com/bhushangadekar/bhushangadekar.github.io](https://github.com/bhushangadekar/bhushangadekar.github.io)

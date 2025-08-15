@@ -137,8 +137,7 @@
     // Apply theme immediately to prevent flash
     (function() {
       const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+      const isDark = savedTheme === 'dark'; // Only use dark if explicitly saved, otherwise default to light
       
       if (isDark) {
         document.documentElement.classList.add('dark');

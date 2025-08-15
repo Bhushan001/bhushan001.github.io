@@ -1,4 +1,4 @@
-// Hero section styles
+// Hero section styles - same in both modes
 .hero-section {
   position: relative;
   height: 100vh;
@@ -12,19 +12,19 @@
   background-color: transparent !important;
 }
 
-// Background animations
+// Background animations - same in both modes
 .hero-background {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #f3e8ff 100%) !important;
+  background: linear-gradient(135deg, #dbeafe 0%, #ffffff 50%, #f3e8ff 100%) !important;
 }
 
 .dark .hero-background {
-  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #f3e8ff 100%) !important;
+  background: linear-gradient(135deg, #dbeafe 0%, #ffffff 50%, #f3e8ff 100%) !important;
 }
 
 html.dark .hero-background {
-  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #f3e8ff 100%) !important;
+  background: linear-gradient(135deg, #dbeafe 0%, #ffffff 50%, #f3e8ff 100%) !important;
 }
 
 // Animated blob elements
@@ -55,9 +55,9 @@ html.dark .hero-background {
   }
 }
 
-// Text gradient effect
+// Text gradient effect - same in both modes
 .text-gradient {
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -171,7 +171,7 @@ html.dark .hero-description {
   color: #6b7280 !important;
 }
 
-// Force light mode colors for all hero section elements
+// Force light mode colors for all hero section elements - same in both modes
 .dark .hero-section * {
   color: inherit !important;
 }
@@ -180,7 +180,7 @@ html.dark .hero-section * {
   color: inherit !important;
 }
 
-// Specific overrides for stats cards
+// Specific overrides for stats cards - same in both modes
 .dark .hero-section .text-gray-600 {
   color: #6b7280 !important;
 }
@@ -189,7 +189,7 @@ html.dark .hero-section .text-gray-600 {
   color: #6b7280 !important;
 }
 
-// Override any dark mode text colors in hero section
+// Override any dark mode text colors in hero section - same in both modes
 .dark .hero-section .text-gray-900 {
   color: #111827 !important;
 }
@@ -204,4 +204,159 @@ html.dark .hero-section .text-gray-900 {
 
 html.dark .hero-section .text-gray-700 {
   color: #374151 !important;
+}
+
+// Additional overrides to ensure consistency
+.dark .hero-section .text-blue-600 {
+  color: #2563eb !important;
+}
+
+html.dark .hero-section .text-blue-600 {
+  color: #2563eb !important;
+}
+
+.dark .hero-section .text-purple-600 {
+  color: #7c3aed !important;
+}
+
+html.dark .hero-section .text-purple-600 {
+  color: #7c3aed !important;
+}
+
+.dark .hero-section .text-green-600 {
+  color: #059669 !important;
+}
+
+html.dark .hero-section .text-green-600 {
+  color: #059669 !important;
+}
+
+.dark .hero-section .text-orange-600 {
+  color: #ea580c !important;
+}
+
+html.dark .hero-section .text-orange-600 {
+  color: #ea580c !important;
+}
+
+// Force white background for stats cards in both modes
+.dark .hero-section .bg-white\/80 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+html.dark .hero-section .bg-white\/80 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+// Force gray borders for stats cards in both modes
+.dark .hero-section .border-gray-200 {
+  border-color: #e5e7eb !important;
+}
+
+html.dark .hero-section .border-gray-200 {
+  border-color: #e5e7eb !important;
+}
+
+// Force light mode for buttons and description in both modes
+.dark .hero-section .hero-description {
+  color: #6b7280 !important;
+  background-color: transparent !important;
+}
+
+html.dark .hero-section .hero-description {
+  color: #6b7280 !important;
+  background-color: transparent !important;
+}
+
+// Force light mode for buttons in both modes
+.dark .hero-section .hero-buttons button {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
+  color: white !important;
+  border-color: #2563eb !important;
+}
+
+html.dark .hero-section .hero-buttons button {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
+  color: white !important;
+  border-color: #2563eb !important;
+}
+
+// Force light mode for outline button in both modes
+.dark .hero-section .hero-buttons button:last-child {
+  background: transparent !important;
+  color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+html.dark .hero-section .hero-buttons button:last-child {
+  background: transparent !important;
+  color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+// Force light mode for outline button hover in both modes
+.dark .hero-section .hero-buttons button:last-child:hover {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+html.dark .hero-section .hero-buttons button:last-child:hover {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+// Force light mode for all text elements in hero section
+.dark .hero-section p,
+.dark .hero-section span,
+.dark .hero-section div {
+  color: inherit !important;
+}
+
+html.dark .hero-section p,
+html.dark .hero-section span,
+html.dark .hero-section div {
+  color: inherit !important;
+}
+
+// Specific button overrides for both modes
+.dark .hero-section .hero-btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
+  color: white !important;
+}
+
+html.dark .hero-section .hero-btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
+  color: white !important;
+}
+
+.dark .hero-section .hero-btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%) !important;
+  color: white !important;
+}
+
+html.dark .hero-section .hero-btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%) !important;
+  color: white !important;
+}
+
+.dark .hero-section .hero-btn-secondary {
+  background: transparent !important;
+  color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+html.dark .hero-section .hero-btn-secondary {
+  background: transparent !important;
+  color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.dark .hero-section .hero-btn-secondary:hover {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+html.dark .hero-section .hero-btn-secondary:hover {
+  background: #2563eb !important;
+  color: white !important;
 }

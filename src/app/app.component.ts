@@ -37,7 +37,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem('theme');
-    this.isDarkMode = savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    this.isDarkMode = savedTheme === 'dark'; // Only use dark if explicitly saved, otherwise default to light
     this.applyTheme();
   }
 

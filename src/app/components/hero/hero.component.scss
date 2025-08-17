@@ -485,3 +485,37 @@ html.dark .hero-section .hero-btn-secondary:hover {
   background: #2563eb !important;
   color: white !important;
 }
+
+// Profile Views Counter Animation
+.profile-views-number {
+  position: relative;
+  display: inline-block;
+  
+  &.animate-pulse {
+    animation: viewsPulse 1s ease-in-out;
+  }
+}
+
+@keyframes viewsPulse {
+  0% {
+    transform: scale(1);
+    color: #dc2626;
+  }
+  50% {
+    transform: scale(1.1);
+    color: #ef4444;
+  }
+  100% {
+    transform: scale(1);
+    color: #dc2626;
+  }
+}
+
+// Force red color for profile views in both modes
+.dark .hero-section .text-red-600 {
+  color: #dc2626 !important;
+}
+
+html.dark .hero-section .text-red-600 {
+  color: #dc2626 !important;
+}

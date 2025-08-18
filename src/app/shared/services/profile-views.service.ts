@@ -28,12 +28,15 @@ export class ProfileViewsService {
       next: (views) => {
         this.viewsSubject.next(views);
         localStorage.setItem(this.STORAGE_KEY, views.toString());
+        console.log('✅ Loaded views from JSON file:', views);
       },
-      error: () => {
+      error: (error) => {
+        console.warn('⚠️ Could not load from JSON file, using localStorage fallback:', error);
         // Fallback to localStorage if file read fails
         const storedViews = localStorage.getItem(this.STORAGE_KEY);
         const currentViews = storedViews ? parseInt(storedViews, 10) : 0;
         this.viewsSubject.next(currentViews);
+        console.log('📊 Using localStorage views:', currentViews);
       }
     });
   }

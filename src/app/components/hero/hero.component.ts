@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioService } from '../../shared/services/portfolio.service';
-import { ProfileViewsService } from '../../shared/services/profile-views.service';
 import { PersonalInfo } from '../../shared/models/portfolio.models';
 
 @Component({
@@ -16,27 +15,15 @@ export class HeroComponent implements OnInit, AfterViewInit {
   animatedTexts: string[] = ['Tech Team Lead', 'Full-Stack Developer', 'Angular Expert', 'DevOps Enthusiast'];
   currentTextIndex = 0;
   currentText = '';
-  profileViews = 0;
 
   constructor(
-    private portfolioService: PortfolioService,
-    private profileViewsService: ProfileViewsService
+    private portfolioService: PortfolioService
   ) {}
 
   ngOnInit() {
     this.portfolioService.getPersonalInfo().subscribe(info => {
       this.personalInfo = info;
     });
-    
-    // Initialize profile views
-    this.profileViewsService.views$.subscribe(views => {
-      this.profileViews = views;
-      // Add a subtle animation effect when views change
-      this.animateViewsChange();
-    });
-    
-    // Increment profile views on component initialization
-    this.profileViewsService.incrementViews();
     
     // Start typing animation after a short delay
     setTimeout(() => {
@@ -100,31 +87,5 @@ export class HeroComponent implements OnInit, AfterViewInit {
 
   openContact() {
     this.scrollToSection('contact');
-  }
-
-  private animateViewsChange(): void {
-    // This will be handled by CSS animations
-    const viewsElement = document.querySelector('.profile-views-number');
-    if (viewsElement) {
-      viewsElement.classList.add('animate-pulse');
-      setTimeout(() => {
-        viewsElement.classList.remove('animate-pulse');
-      }, 1000);
-    }
-  }
-
-  // Test method for debugging profile views
-  testProfileViews(): void {
-    console.log('🧪 Testing profile views...');
-    console.log('Current views:', this.profileViews);
-    console.log('Last increment date:', this.profileViewsService.getLastIncrementDate());
-    
-    // Force increment for testing
-    this.profileViewsService.forceIncrementViews();
-    
-    // Clear daily increment flag for testing
-    this.profileViewsService.clearDailyIncrement();
-    
-    console.log('✅ Test completed');
   }
 }

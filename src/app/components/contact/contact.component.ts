@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PortfolioService } from '../../shared/services/portfolio.service';
+import { ContactService, ContactFormData } from '../../shared/services/contact.service';
 import { ContactInfo } from '../../shared/models/portfolio.models';
 import { gsap } from 'gsap';
 
@@ -23,8 +24,12 @@ export class ContactComponent implements OnInit, AfterViewInit {
   isSubmitting = false;
   submitSuccess = false;
   submitError = false;
+  errorMessage = '';
 
-  constructor(private portfolioService: PortfolioService) {}
+  constructor(
+    private portfolioService: PortfolioService,
+    private contactService: ContactService
+  ) {}
 
   ngOnInit() {
     this.portfolioService.getContactInfo().subscribe(info => {
@@ -82,25 +87,46 @@ export class ContactComponent implements OnInit, AfterViewInit {
   onSubmit() {
     if (this.validateForm()) {
       this.isSubmitting = true;
+      this.submitError = false;
+      this.submitSuccess = false;
       
-      // Simulate form submission
-      setTimeout(() => {
-        this.isSubmitting = false;
-        this.submitSuccess = true;
-        
-        // Reset form
-        this.contactForm = {
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        };
-        
-        // Hide success message after 3 seconds
-        setTimeout(() => {
-          this.submitSuccess = false;
-        }, 3000);
-      }, 1500);
+      const formData: ContactFormData = {
+        name: this.contactForm.name.trim(),
+        email: this.contactForm.email.trim(),
+        subject: this.contactForm.subject.trim(),
+        message: this.contactForm.message.trim()
+      };
+
+      this.contactService.submitContactForm(formData).subscribe({
+        next: (response) => {
+          this.isSubmitting = false;
+          this.submitSuccess = true;
+          
+          // Reset form
+          this.contactForm = {
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+          };
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            this.submitSuccess = false;
+          }, 5000);
+        },
+        error: (error) => {
+          this.isSubmitting = false;
+          this.submitError = true;
+          this.errorMessage = 'Failed to send message. Please try again later.';
+          
+          // Hide error message after 5 seconds
+          setTimeout(() => {
+            this.submitError = false;
+            this.errorMessage = '';
+          }, 5000);
+        }
+      });
     }
   }
 
@@ -140,9 +166,26 @@ export class ContactComponent implements OnInit, AfterViewInit {
 
   private showError(message: string) {
     this.submitError = true;
+    this.errorMessage = message;
     setTimeout(() => {
       this.submitError = false;
-    }, 3000);
+      this.errorMessage = '';
+    }, 5000);
+  }
+
+  // Test webhook connection (for development)
+  testWebhook() {
+    console.log('🧪 Testing webhook connection...');
+    this.contactService.testWebhook().subscribe({
+      next: (response) => {
+        console.log('✅ Webhook test successful:', response);
+        alert('Webhook test successful! Check console for details.');
+      },
+      error: (error) => {
+        console.error('❌ Webhook test failed:', error);
+        alert('Webhook test failed! Check console for details.');
+      }
+    });
   }
 
   openEmail() {

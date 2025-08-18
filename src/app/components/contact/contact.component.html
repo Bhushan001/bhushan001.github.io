@@ -100,13 +100,19 @@
             {{ errorMessage }}
           </div>
 
-          <!-- Test Button (remove in production) -->
-          <div class="mt-4">
+          <!-- Test Buttons (remove in production) -->
+          <div class="mt-4 space-y-2">
             <button 
               type="button"
               (click)="testWebhook()"
               class="w-full px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-all duration-300 text-sm">
               🧪 Test Webhook
+            </button>
+            <button 
+              type="button"
+              (click)="checkWebhookStatus()"
+              class="w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 text-sm">
+              🔍 Check Webhook Status
             </button>
           </div>
         </div>

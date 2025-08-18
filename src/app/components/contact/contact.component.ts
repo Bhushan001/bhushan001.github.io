@@ -188,6 +188,23 @@ export class ContactComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // Check webhook status (for debugging)
+  checkWebhookStatus() {
+    console.log('🔍 Checking webhook status...');
+    this.contactService.checkWebhookStatus().subscribe({
+      next: (response) => {
+        console.log('✅ Webhook status check:', response);
+        // If we get here, the webhook is accessible (200 response)
+        // The response could be "Accepted" or any other text from Make.com
+        alert('✅ Webhook is active and accessible!\n\nStatus: 200 OK\nResponse: ' + (response || 'Accepted') + '\n\n💡 If data is not appearing in Google Sheets automatically, check:\n1. Scenario is turned ON in Make.com\n2. Google Sheets connection is active\n3. No errors in scenario modules');
+      },
+      error: (error) => {
+        console.error('❌ Webhook status check failed:', error);
+        alert('❌ Webhook status check failed! Check console for details.');
+      }
+    });
+  }
+
   openEmail() {
     if (this.contactInfo?.email) {
       window.open(`mailto:${this.contactInfo.email}`, '_blank');

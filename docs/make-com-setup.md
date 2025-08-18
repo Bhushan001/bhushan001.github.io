@@ -141,6 +141,55 @@ Add another email module to send auto-reply to the contact:
 3. Monitor Google Sheets for new entries
 4. Check browser console for errors
 
+## 🚨 **CRITICAL: Scenario Not Auto-Executing**
+
+If your webhook receives data but the scenario doesn't automatically execute, follow these steps:
+
+### 4.1 Check Scenario Status
+1. Go to your Make.com dashboard
+2. Find your "Portfolio Contact Form" scenario
+3. **VERIFY**: The scenario shows "ON" status (green toggle)
+4. If it shows "OFF", click the toggle to turn it ON
+
+### 4.2 Check Webhook Configuration
+1. Open your scenario
+2. Click on the webhook module
+3. **VERIFY**: The webhook URL matches exactly with your Angular service
+4. **VERIFY**: The webhook method is set to "POST"
+5. **VERIFY**: The response format is set to "JSON"
+
+### 4.3 Check Webhook Queue
+1. In your scenario, click on the webhook module
+2. Look for "Queue" or "History" tab
+3. **VERIFY**: You can see incoming webhook requests
+4. If requests are in queue but not processing, the scenario is OFF
+
+### 4.4 Test Webhook Manually
+1. In Make.com, go to your webhook module
+2. Click "Run once" to test the webhook
+3. **VERIFY**: The test data flows through all modules
+4. **VERIFY**: Google Sheets gets updated
+5. **VERIFY**: Email notifications are sent
+
+### 4.5 Check Make.com Plan Limits
+1. Go to your Make.com account settings
+2. Check your current plan
+3. **VERIFY**: You haven't exceeded your monthly operations limit
+4. Free tier: 1,000 operations/month
+
+### 4.6 Common Solutions
+1. **Scenario OFF**: Turn the scenario ON
+2. **Wrong Webhook URL**: Update the URL in your Angular service
+3. **Plan Limit Exceeded**: Upgrade plan or wait for next month
+4. **Webhook Configuration**: Reconfigure the webhook module
+5. **Module Errors**: Check for errors in Google Sheets or Email modules
+
+### 4.7 Debug Steps
+1. **Check Console**: Look for webhook response in browser console
+2. **Check Make.com Logs**: Look at scenario execution history
+3. **Test with Postman**: Send a test POST request to your webhook URL
+4. **Verify Data Format**: Ensure JSON data matches expected format
+
 ## Security Considerations
 
 1. **Rate Limiting**: Consider adding rate limiting to prevent spam

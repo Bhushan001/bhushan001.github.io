@@ -1,144 +1,61 @@
-# Bhushan Gadekar - Portfolio
+# Bhushan Portfolio
 
-A modern, responsive portfolio website built with Angular 19, Tailwind CSS, and GSAP animations.
+A modern, responsive portfolio website built with Angular and Tailwind CSS.
 
-## 🚀 Features
+## Features
 
-- **Modern Design**: Clean and professional portfolio design
-- **Responsive**: Fully responsive across all devices
-- **Animations**: Smooth GSAP animations for enhanced user experience
-- **Performance**: Optimized for fast loading and smooth interactions
-- **SEO Friendly**: Proper meta tags and semantic HTML
+- **Responsive Design**: Works perfectly on all devices
+- **Modern UI**: Beautiful animations and transitions
+- **Profile Views Counter**: Track worldwide profile views
+- **GitHub Pages Deployment**: Automatic deployment via GitHub Actions
 
-## 🛠️ Tech Stack
+## Profile Views System
 
-- **Frontend**: Angular 19
-- **Styling**: Tailwind CSS
-- **Animations**: GSAP (GreenSock)
-- **Icons**: Font Awesome
-- **Deployment**: GitHub Pages
+The portfolio includes a profile views counter that tracks worldwide visits. The system uses a local JSON file for persistence and includes tools for easy management.
 
-## 📦 Installation
+### How it works:
 
-1. Clone the repository:
+1. **Local Storage**: Each user's browser stores their visit count locally
+2. **JSON File**: The global count is stored in `src/assets/data/profile-views.json`
+3. **Daily Limit**: Each user can only increment the count once per day
+4. **Manual Updates**: Use npm scripts to manually update the global count
+
+### Managing Profile Views:
+
 ```bash
-git clone https://github.com/bhushan001/bhushan001.github.io.git
-cd bhushan001.github.io
+# Get current view count
+npm run views:get
+
+# Set view count to a specific number
+npm run views:set 100
+
+# Increment view count by 1
+npm run views:increment
 ```
 
-2. Install dependencies:
+### Files:
+- `src/assets/data/profile-views.json` - Stores the global view count
+- `src/app/shared/services/profile-views.service.ts` - Service for managing views
+- `scripts/update-views.js` - Utility script for manual updates
+
+## Development
+
 ```bash
+# Install dependencies
 npm install
-```
 
-3. Start the development server:
-```bash
+# Start development server
 npm start
-```
 
-4. Open your browser and navigate to `http://localhost:4200`
-
-## 🚀 Deployment
-
-### Automatic Deployment (Recommended)
-
-This project is configured with GitHub Actions for automatic deployment to GitHub Pages. Simply push to the `main` branch and the site will be automatically deployed.
-
-### Manual Deployment
-
-1. Build the project for production:
-```bash
+# Build for production
 npm run build:prod
-```
 
-2. Deploy to GitHub Pages:
-```bash
+# Deploy to GitHub Pages
 npm run deploy
 ```
 
-## 📁 Project Structure
+## Deployment
 
-```
-src/
-├── app/
-│   ├── components/
-│   │   ├── about/
-│   │   ├── awards/
-│   │   ├── contact/
-│   │   ├── experience/
-│   │   ├── footer/
-│   │   ├── hero/
-│   │   ├── projects/
-│   │   └── skills/
-│   ├── shared/
-│   │   ├── models/
-│   │   ├── pipes/
-│   │   └── services/
-│   └── app.component.*
-├── assets/
-│   ├── icons/
-│   ├── images/
-│   └── scss/
-└── styles.scss
-```
+The portfolio is automatically deployed to GitHub Pages via GitHub Actions when changes are pushed to the main branch.
 
-## 🎨 Customization
-
-### Colors and Styling
-The project uses Tailwind CSS for styling. You can customize colors, spacing, and other design tokens in the `tailwind.config.js` file.
-
-### Content
-Update the content in the respective component files:
-- `hero.component.ts` - Hero section content
-- `about.component.ts` - About section content
-- `experience.component.ts` - Experience section content
-- `projects.component.ts` - Projects section content
-- `skills.component.ts` - Skills section content
-- `awards.component.ts` - Awards section content
-- `contact.component.ts` - Contact information
-
-### Images
-Replace images in the `src/assets/images/` directory with your own images.
-
-## 🔧 Development
-
-### Available Scripts
-
-- `npm start` - Start development server
-- `npm run build` - Build for development
-- `npm run build:prod` - Build for production
-- `npm run test` - Run unit tests
-- `npm run deploy` - Deploy to GitHub Pages
-
-### Code Style
-
-This project follows Angular best practices and uses:
-- TypeScript for type safety
-- SCSS for component styling
-- Tailwind CSS for utility classes
-- Angular modules for component organization
-
-## 📱 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Contact
-
-Bhushan Gadekar - [LinkedIn](https://linkedin.com/in/bhushangadekar) - bhushangadekar@example.com
-
-Project Link: [https://github.com/bhushan001/bhushan001.github.io](https://github.com/bhushan001/bhushan001.github.io)
+Visit: https://bhushan001.github.io

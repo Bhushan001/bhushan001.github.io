@@ -9,7 +9,10 @@
     "test": "ng test",
     "build:prod": "ng build --configuration production",
     "deploy": "ng deploy --base-href=https://bhushan001.github.io/",
-    "deploy:gh-pages": "ng deploy --base-href=https://bhushan001.github.io/"
+    "deploy:gh-pages": "ng deploy --base-href=https://bhushan001.github.io/",
+    "views:get": "node scripts/update-views.js get",
+    "views:set": "node scripts/update-views.js set",
+    "views:increment": "node scripts/update-views.js increment"
   },
   "private": true,
   "dependencies": {

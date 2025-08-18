@@ -112,4 +112,19 @@ export class HeroComponent implements OnInit, AfterViewInit {
       }, 1000);
     }
   }
+
+  // Test method for debugging profile views
+  testProfileViews(): void {
+    console.log('🧪 Testing profile views...');
+    console.log('Current views:', this.profileViews);
+    console.log('Last increment date:', this.profileViewsService.getLastIncrementDate());
+    
+    // Force increment for testing
+    this.profileViewsService.forceIncrementViews();
+    
+    // Clear daily increment flag for testing
+    this.profileViewsService.clearDailyIncrement();
+    
+    console.log('✅ Test completed');
+  }
 }

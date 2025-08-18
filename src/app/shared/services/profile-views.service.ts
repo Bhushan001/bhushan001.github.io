@@ -23,32 +23,38 @@ export class ProfileViewsService {
   }
 
   private loadViews(): void {
-    // First try to load from JSON file, fallback to localStorage
+    // First try to load from localStorage (primary storage)
+    const storedViews = localStorage.getItem(this.STORAGE_KEY);
+    const currentViews = storedViews ? parseInt(storedViews, 10) : 0;
+    
+    // Set the current views immediately
+    this.viewsSubject.next(currentViews);
+    
+    // Then try to sync with JSON file (as backup/fallback)
     this.loadViewsFromFile().subscribe({
-      next: (views) => {
-        this.viewsSubject.next(views);
-        localStorage.setItem(this.STORAGE_KEY, views.toString());
-        console.log('✅ Loaded views from JSON file:', views);
+      next: (fileViews) => {
+        // If JSON file has higher count, use it
+        if (fileViews > currentViews) {
+          this.viewsSubject.next(fileViews);
+          localStorage.setItem(this.STORAGE_KEY, fileViews.toString());
+          console.log('✅ Synced with JSON file, updated to:', fileViews);
+        } else {
+          console.log('📊 Using localStorage views:', currentViews);
+        }
       },
       error: (error) => {
-        console.warn('⚠️ Could not load from JSON file, using localStorage fallback:', error);
-        // Fallback to localStorage if file read fails
-        const storedViews = localStorage.getItem(this.STORAGE_KEY);
-        const currentViews = storedViews ? parseInt(storedViews, 10) : 0;
-        this.viewsSubject.next(currentViews);
-        console.log('📊 Using localStorage views:', currentViews);
+        console.log('📊 Using localStorage views (JSON file not available):', currentViews);
       }
     });
   }
 
   private loadViewsFromFile(): Observable<number> {
     return this.http.get<ProfileViewsData>(this.VIEWS_FILE_PATH).pipe(
-      tap(data => console.log('Loaded views from file:', data)),
+      tap(data => console.log('📄 Loaded from JSON file:', data)),
       map(data => data.views),
       catchError(error => {
-        console.error('Error loading views from file:', error);
-        const storedViews = localStorage.getItem(this.STORAGE_KEY);
-        return of(storedViews ? parseInt(storedViews, 10) : 0);
+        console.warn('⚠️ Could not load from JSON file:', error);
+        return of(0);
       })
     );
   }
@@ -66,33 +72,19 @@ export class ProfileViewsService {
   }
 
   incrementViews(): void {
-    // Only increment once per day per user to simulate worldwide persistence
+    // Only increment once per day per user
     if (this.shouldIncrement()) {
       const currentViews = this.viewsSubject.value;
       const newViews = currentViews + 1;
       
+      // Update local state immediately
       this.viewsSubject.next(newViews);
       localStorage.setItem(this.STORAGE_KEY, newViews.toString());
       
-      // Update the JSON file (this will be committed to git)
-      this.updateViewsFile(newViews);
-      
-      console.log(`Profile view incremented to: ${newViews}`);
+      console.log(`✅ Profile view incremented to: ${newViews}`);
+    } else {
+      console.log('⏰ View already counted today');
     }
-  }
-
-  private updateViewsFile(views: number): void {
-    const data: ProfileViewsData = {
-      views: views,
-      lastUpdated: new Date().toISOString()
-    };
-    
-    // Note: In a real application, you would need a backend to write to files
-    // For now, we'll just log the data that should be written
-    console.log('Views data to be written to file:', data);
-    
-    // TODO: In a production app, you'd send this to a backend endpoint
-    // that updates the JSON file
   }
 
   getCurrentViews(): number {
@@ -103,7 +95,6 @@ export class ProfileViewsService {
     localStorage.removeItem(this.STORAGE_KEY);
     localStorage.removeItem(this.STORAGE_KEY_LAST_INCREMENT);
     this.viewsSubject.next(0);
-    this.updateViewsFile(0);
   }
 
   // Method to manually increment views (for testing purposes)
@@ -112,7 +103,7 @@ export class ProfileViewsService {
     const newViews = currentViews + 1;
     this.viewsSubject.next(newViews);
     localStorage.setItem(this.STORAGE_KEY, newViews.toString());
-    this.updateViewsFile(newViews);
+    console.log(`🔧 Force incremented to: ${newViews}`);
   }
 
   // Method to refresh views
@@ -125,11 +116,17 @@ export class ProfileViewsService {
     return localStorage.getItem(this.STORAGE_KEY_LAST_INCREMENT);
   }
 
-  // Method to manually update the views file (for admin purposes)
+  // Method to manually update the views (for admin purposes)
   updateViewsManually(views: number): void {
     this.viewsSubject.next(views);
     localStorage.setItem(this.STORAGE_KEY, views.toString());
-    this.updateViewsFile(views);
+    console.log(`🔧 Manually updated to: ${views}`);
+  }
+
+  // Method to clear daily increment flag (for testing)
+  clearDailyIncrement(): void {
+    localStorage.removeItem(this.STORAGE_KEY_LAST_INCREMENT);
+    console.log('🧹 Cleared daily increment flag');
   }
 }
 

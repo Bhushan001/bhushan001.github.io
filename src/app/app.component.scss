@@ -1,301 +1,99 @@
-// Enhanced Navbar Styles
+// ─── Navbar ───────────────────────────────────────────────────────────────────
+.nav-bar {
+  background: var(--nav-bg);
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
-// Navigation link styles
-.nav-link {
-  @apply text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400;
-  
-  &.active {
-    @apply text-primary-600 dark:text-primary-400 font-semibold;
-    
-    &::after {
-      content: '';
-      @apply absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary-500 to-purple-500;
+  &.nav-scrolled {
+    border-bottom-color: var(--border);
+    box-shadow: 0 1px 0 var(--border), 0 4px 20px rgba(0,0,0,0.06);
+
+    html.dark & {
+      box-shadow: 0 1px 0 var(--border), 0 4px 20px rgba(0,0,0,0.3);
     }
   }
 }
 
-// Ensure navbar text visibility in dark mode - HIGH SPECIFICITY
-nav.dark .text-gray-900,
-.dark nav .text-gray-900,
-html.dark nav .text-gray-900 {
-  color: #ffffff !important;
+.h-18 { height: 4.5rem; }
+
+// ─── Logo ─────────────────────────────────────────────────────────────────────
+.logo-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: opacity 0.2s;
+  &:hover { opacity: 0.85; }
 }
 
-nav.dark .text-gray-700,
-.dark nav .text-gray-700,
-html.dark nav .text-gray-700 {
-  color: #d1d5db !important;
-}
+.logo-mark {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  box-shadow: 0 0 20px rgba(99,102,241,0.4);
+  transition: box-shadow 0.3s;
 
-nav.dark .text-gray-500,
-.dark nav .text-gray-500,
-html.dark nav .text-gray-500 {
-  color: #9ca3af !important;
-}
-
-// Force Bhushan Gadekar text visibility in dark mode - ULTRA HIGH SPECIFICITY
-nav.dark .text-xl.font-bold.text-gray-900.dark\\:text-white,
-.dark nav .text-xl.font-bold.text-gray-900.dark\\:text-white,
-html.dark nav .text-xl.font-bold.text-gray-900.dark\\:text-white {
-  color: #ffffff !important;
-}
-
-// Alternative selector for the name text - ULTRA HIGH SPECIFICITY
-nav.dark span.text-xl.font-bold,
-.dark nav span.text-xl.font-bold,
-html.dark nav span.text-xl.font-bold {
-  color: #ffffff !important;
-}
-
-// Specific rule for the navbar name - ULTRA HIGH SPECIFICITY
-nav.dark .navbar-name,
-.dark nav .navbar-name,
-html.dark nav .navbar-name {
-  color: #ffffff !important;
-}
-
-// Override any hero component styles that might affect navbar
-nav.dark .navbar-name,
-.dark nav .navbar-name,
-html.dark nav .navbar-name {
-  color: #ffffff !important;
-}
-
-// Force navbar text to be visible regardless of other component overrides
-nav .navbar-name {
-  color: #111827 !important;
-}
-
-nav.dark .navbar-name,
-.dark nav .navbar-name,
-html.dark nav .navbar-name {
-  color: #ffffff !important;
-}
-
-// Force visible text on mobile navbar
-@media (max-width: 640px) {
-  .nav-link {
-    color: #374151 !important; // Dark gray for light mode
-  }
-  
-  .dark .nav-link {
-    color: #d1d5db !important; // Light gray for dark mode
-  }
-  
-  .nav-link:hover {
-    color: #2563eb !important; // Blue on hover
-  }
-  
-  .dark .nav-link:hover {
-    color: #60a5fa !important; // Light blue on hover in dark mode
-  }
-  
-  .nav-link.active {
-    color: #2563eb !important; // Blue for active state
-    font-weight: 600 !important;
-  }
-  
-  .dark .nav-link.active {
-    color: #60a5fa !important; // Light blue for active state in dark mode
-    font-weight: 600 !important;
-  }
-  
-  // Ensure logo text is visible in dark mode on mobile
-  .dark .text-xl.font-bold {
-    color: #ffffff !important;
-  }
-  
-  .dark .text-xs.text-gray-500 {
-    color: #9ca3af !important;
+  .logo-btn:hover & {
+    box-shadow: 0 0 28px rgba(99,102,241,0.6);
   }
 }
 
-// Mobile navigation link styles
+// ─── Desktop nav links ────────────────────────────────────────────────────────
+.nav-link {
+  color: var(--text-2);
+
+  &:hover {
+    color: var(--text-1);
+    background: rgba(99,102,241,0.08);
+  }
+
+  &--active {
+    color: var(--accent);
+    background: rgba(99,102,241,0.1);
+    font-weight: 600;
+  }
+}
+
+// ─── Mobile nav links ─────────────────────────────────────────────────────────
 .mobile-nav-link {
-  @apply text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400;
-  
-  &.active {
-    @apply text-primary-600 dark:text-primary-400 font-semibold bg-gradient-to-r from-primary-500/10 to-purple-500/10;
+  color: var(--text-2);
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-1);
+    background: rgba(99,102,241,0.06);
+  }
+
+  &--active {
+    color: var(--accent);
+    background: rgba(99,102,241,0.1);
+    font-weight: 600;
   }
 }
 
-// Slide down animation for mobile menu
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.mobile-menu {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.animate-slideDown {
-  animation: slideDown 0.3s ease-out;
+// ─── Theme button ─────────────────────────────────────────────────────────────
+.theme-btn {
+  cursor: pointer;
 }
 
-// Mobile dropdown background
-@media (max-width: 1023px) {
-  .lg\\:hidden {
-    background-color: white !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-  }
-  
-  .dark .lg\\:hidden {
-    background-color: #0f172a !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
-  }
-}
+// ─── Scroll-to-top ────────────────────────────────────────────────────────────
+.scroll-top-btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+  border: none;
+  cursor: pointer;
 
-// Enhanced scroll to top button
-.shadow-3xl {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-// Focus states for accessibility
-.nav-link:focus,
-.mobile-nav-link:focus,
-button:focus {
-  @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-white dark:ring-offset-dark-900;
-}
-
-// Responsive adjustments
-@media (max-width: 640px) {
-  nav {
-    @apply h-16;
-    background-color: white !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
-    border-bottom: 1px solid #e5e7eb !important;
-  }
-  
-  .dark nav {
-    background-color: #0f172a !important;
-    border-bottom: 1px solid #334155 !important;
-  }
-  
-  // Smaller logo and text for mobile
-  .w-10.h-10 {
-    @apply w-8 h-8;
-  }
-  
-  .text-xl {
-    @apply text-lg;
-  }
-  
-  // Adjust spacing for mobile
-  .space-x-3 {
-    gap: 0.75rem;
-  }
-  
-  // Maintain button styling for mobile
-  .p-3 {
-    padding: 0.75rem;
-  }
-  
-  // Adjust container padding for mobile
-  .container-custom {
-    @apply px-4;
-  }
-}
-
-@media (max-width: 480px) {
-  // Even smaller adjustments for very small screens
-  .w-10.h-10 {
-    @apply w-7 h-7;
-  }
-  
-  .text-xl {
-    @apply text-base;
-  }
-  
-  // Hide subtitle on very small screens
-  .text-xs.text-gray-500 {
-    @apply hidden;
-  }
-  
-  // Maintain button spacing
-  .space-x-3 {
-    gap: 0.5rem;
-  }
-  
-  // Even smaller buttons for very small screens but still stylish
-  button[class*="p-3"] {
-    @apply p-1.5 rounded-xl shadow-lg transition-all duration-300;
-    min-width: 2.25rem;
-    min-height: 2.25rem;
-  }
-  
-  // Ensure icons are still properly sized
-  button[class*="p-3"] i {
-    @apply text-sm;
-  }
-}
-
-@media (min-width: 641px) {
-  nav {
-    @apply h-20;
-  }
-}
-
-// Force solid background on mobile navbar
-@media (max-width: 640px) {
-  nav,
-  nav.bg-transparent,
-  nav.bg-white\/95,
-  nav.bg-dark-900\/95 {
-    background-color: white !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
-    border-bottom: 1px solid #e5e7eb !important;
-  }
-  
-  .dark nav,
-  .dark nav.bg-transparent,
-  .dark nav.bg-white\/95,
-  .dark nav.bg-dark-900\/95 {
-    background-color: #0f172a !important;
-    border-bottom: 1px solid #334155 !important;
-  }
-  
-  // Enhanced mobile button styling
-  button[class*="p-3"] {
-    @apply p-2 rounded-xl shadow-lg transition-all duration-300;
-    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-    border: 1px solid rgba(229, 231, 235, 0.5);
-    min-width: 2.5rem;
-    min-height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -3px;
-  }
-  
-  .dark button[class*="p-3"] {
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    border: 1px solid rgba(51, 65, 85, 0.5);
-  }
-  
-  button[class*="p-3"]:hover {
-    @apply transform scale-105 shadow-xl;
-    background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
-  }
-  
-  .dark button[class*="p-3"]:hover {
-    background: linear-gradient(135deg, #334155 0%, #475569 100%);
-  }
-  
-  // Ensure proper icon sizing in mobile buttons
-  button[class*="p-3"] i {
-    @apply text-base;
-  }
-  
-  // Mobile menu button specific styling
-  button[class*="lg:hidden"] {
-    @apply relative;
-  }
-  
-  button[class*="lg:hidden"] .relative.w-6.h-6 {
-    width: 1rem;
-    height: 1rem;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(99,102,241,0.5);
   }
 }

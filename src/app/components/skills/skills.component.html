@@ -1,76 +1,59 @@
-<section id="skills" class="py-20 bg-white dark:bg-dark-900">
+<section id="skills" class="section-padding bg-[var(--bg)]">
   <div class="container-custom">
-  <!-- Section Header -->
-  <div class="text-center mb-16">
-    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-      My <span class="text-gradient">Skills</span>
-    </h2>
-    <div class="w-24 h-1 bg-gradient-to-r from-primary-600 to-purple-600 mx-auto rounded-full"></div>
-  </div>
 
-  <!-- Skills Categories -->
-  <div class="grid lg:grid-cols-2 gap-8">
-    <div *ngFor="let category of Object.keys(skillCategories)" class="skill-card card">
-      <!-- Category Header -->
-      <div class="flex items-center mb-6">
-        <div class="w-12 h-12 rounded-lg bg-gradient-to-r {{ getCategoryColor(category) }} flex items-center justify-center mr-4">
-          <i [class]="getCategoryIcon(category) + ' text-white text-xl'"></i>
-        </div>
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ category }}</h3>
+    <!-- Header -->
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="fas fa-code text-xs"></i> Skills</div>
+      <h2>My <span class="text-gradient">Technical Arsenal</span></h2>
+      <p>27 skills across 6 categories — from frontend frameworks to cloud infrastructure.</p>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 reveal">
+      <div *ngFor="let s of summaryStats" class="skill-stat-card">
+        <span class="stat-val text-gradient">{{ s.val }}</span>
+        <span class="stat-lbl text-[var(--text-3)]">{{ s.lbl }}</span>
       </div>
+    </div>
 
-      <!-- Skills List -->
-      <div class="space-y-4">
-        <div *ngFor="let skill of skillCategories[category]" class="skill-item">
-          <div class="flex items-center justify-between mb-2">
-            <div class="flex items-center space-x-3">
-              <i [class]="skill.icon + ' text-lg'" [style.color]="skill.color"></i>
-              <span class="font-medium text-gray-900 dark:text-white">{{ skill.name }}</span>
-            </div>
-            <span class="text-sm font-semibold text-primary-600 dark:text-primary-400">
-              {{ skill.proficiency }}%
-            </span>
+    <!-- Categories -->
+    <div class="grid lg:grid-cols-2 gap-6">
+      <div *ngFor="let cat of Object.keys(skillCategories); let ci = index"
+           class="card skill-cat-card reveal"
+           [class]="'delay-' + (ci + 1)">
+
+        <!-- Category header -->
+        <div class="flex items-center gap-3 mb-5">
+          <div class="cat-icon" [style.background]="getCategoryBg(cat)">
+            <i [class]="getCategoryIcon(cat) + ' text-sm'" [style.color]="getCategoryColor(cat)"></i>
           </div>
-          
-          <!-- Progress Bar -->
-          <div class="w-full bg-gray-200 dark:bg-dark-600 rounded-full h-2 overflow-hidden">
-            <div class="skill-bar h-2 rounded-full transition-all duration-1000 ease-out"
-                 [style.background]="skill.color"
-                 [style.width]="'0%'"
-                 [attr.data-progress]="skill.proficiency">
+          <div>
+            <h3 class="text-base font-bold text-[var(--text-1)]">{{ cat }}</h3>
+            <p class="text-xs text-[var(--text-3)]">{{ skillCategories[cat].length }} skills</p>
+          </div>
+        </div>
+
+        <!-- Skills as chips with bars -->
+        <div class="space-y-3">
+          <div *ngFor="let skill of skillCategories[cat]" class="skill-row">
+            <div class="flex items-center justify-between mb-1">
+              <div class="flex items-center gap-2">
+                <i [class]="skill.icon + ' text-sm'" [style.color]="skill.color"></i>
+                <span class="text-sm font-medium text-[var(--text-1)]">{{ skill.name }}</span>
+              </div>
+              <span class="text-xs font-semibold" [style.color]="skill.color">{{ skill.proficiency }}%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill skill-bar"
+                   [attr.data-progress]="skill.proficiency"
+                   [style.background]="'linear-gradient(90deg,' + skill.color + ',' + skill.color + '99)'">
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Skills Summary -->
-  <div class="mt-16">
-    <div class="card text-center">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-        <i class="fas fa-chart-line text-primary-600 mr-3"></i>
-        Skills Overview
-      </h3>
-      <div class="grid md:grid-cols-4 gap-6">
-        <div class="text-center">
-          <div class="text-3xl font-bold text-primary-600 mb-2">{{ skills.length }}</div>
-          <div class="text-gray-600 dark:text-gray-400">Total Skills</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-green-600 mb-2">{{ Object.keys(skillCategories).length }}</div>
-          <div class="text-gray-600 dark:text-gray-400">Categories</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-blue-600 mb-2">{{ getExpertLevelCount() }}</div>
-          <div class="text-gray-600 dark:text-gray-400">Expert Level</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-purple-600 mb-2">{{ getAdvancedLevelCount() }}</div>
-          <div class="text-gray-600 dark:text-gray-400">Advanced Level</div>
-        </div>
-      </div>
-    </div>
   </div>
-</div>
 </section>

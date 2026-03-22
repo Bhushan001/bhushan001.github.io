@@ -1,521 +1,197 @@
-// Hero section styles - same in both modes
+// ─── Hero section ─────────────────────────────────────────────────────────────
 .hero-section {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  overflow: hidden;
-  padding-top: 4.25rem; // Reduced top padding to move BG circle up by ~20px
-  
-  // Force light mode colors regardless of theme
-  color: #374151 !important;
-  background-color: transparent !important;
+  background: var(--bg);
 }
 
-// Background animations - same in both modes
-.hero-background {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #dbeafe 0%, #ffffff 50%, #f3e8ff 100%) !important;
+// ─── Background ───────────────────────────────────────────────────────────────
+.hero-bg-base {
+  background: var(--bg);
 }
 
-.dark .hero-background {
-  background: linear-gradient(135deg, #dbeafe 0%, #ffffff 50%, #f3e8ff 100%) !important;
+html.dark .hero-bg-base {
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,0.12) 0%, transparent 70%),
+              var(--bg);
 }
 
-html.dark .hero-background {
-  background: linear-gradient(135deg, #dbeafe 0%, #ffffff 50%, #f3e8ff 100%) !important;
+// Blobs
+.blob {
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: blob 10s infinite;
+  will-change: transform;
 }
 
-// Animated blob elements
-.animate-blob {
-  animation: blob 7s infinite;
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -100px;
+  background: rgba(99,102,241,0.08);
+  animation-delay: 0s;
 }
 
-.animation-delay-2000 {
-  animation-delay: 2s;
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  right: -100px;
+  background: rgba(139,92,246,0.06);
+  animation-delay: 3s;
 }
 
-.animation-delay-4000 {
-  animation-delay: 4s;
+.blob-3 {
+  width: 400px;
+  height: 400px;
+  bottom: 100px;
+  left: 30%;
+  background: rgba(6,182,212,0.05);
+  animation-delay: 5s;
 }
+
+html:not(.dark) .blob-1 { background: rgba(99,102,241,0.06); }
+html:not(.dark) .blob-2 { background: rgba(139,92,246,0.05); }
+html:not(.dark) .blob-3 { background: rgba(6,182,212,0.04);  }
 
 @keyframes blob {
-  0% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1);
-  }
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(30px, -40px) scale(1.08); }
+  66%  { transform: translate(-20px, 20px) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
 }
 
-// Text gradient effect - same in both modes
-.text-gradient {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+// ─── Avatar ───────────────────────────────────────────────────────────────────
+.avatar-wrap { animation-delay: 0.15s; }
+
+.avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(99,102,241,0.5), rgba(139,92,246,0.4), rgba(6,182,212,0.3));
+  animation: spin-slow 8s linear infinite;
+  z-index: 0;
+  filter: blur(2px);
 }
 
-// Hero content - visible from start
-.hero-title {
-  color: #111827 !important; // Force dark text
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-.hero-subtitle {
-  color: #374151 !important; // Force dark text
+.avatar {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 60%, #06b6d4 100%);
+  box-shadow: 0 8px 40px rgba(99,102,241,0.45);
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 1.25rem;
+  letter-spacing: 0.05em;
 }
 
-.hero-description {
-  color: #6b7280 !important; // Force gray text
+// ─── Typography ───────────────────────────────────────────────────────────────
+.hero-name {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
 }
 
-.hero-buttons {
-  /* No animation - visible immediately */
+.hero-role {
+  min-height: 2rem;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hero-desc {
+  font-size: 1.0625rem;
+  color: var(--text-2);
 }
 
-// Button hover effects
-.btn-primary {
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
+// Cursor blink
+.cursor-blink {
+  color: var(--accent);
+  font-weight: 300;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+// ─── Stats ────────────────────────────────────────────────────────────────────
+.stat-card {
+  padding: 1.25rem 1rem;
+  border-radius: 0.875rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-  
+
+  html.dark & {
+    backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    border-color: rgba(99,102,241,0.3);
+    transform: translateY(-3px);
+    html.dark & { box-shadow: 0 8px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.07); }
+    html:not(.dark) & { box-shadow: 0 8px 30px rgba(99,102,241,0.1); }
   }
 }
 
-// Responsive design
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 6rem 1rem 2rem 1rem; // Adjusted top padding for new layout
-    min-height: 100vh; // Ensure full height
-  }
-  
-  .hero-title {
-    font-size: 2.5rem;
-    margin-top: 2rem; // Additional top margin for mobile
-  }
-  
-  .hero-subtitle {
-    font-size: 1.25rem;
-  }
-  
-  .hero-description {
-    font-size: 1rem;
-  }
-  
-  // Profile image spacing for mobile - more specific targeting
-  .hero-section .mb-8 {
-    margin-top: 1rem !important; // Reduced margin to move BG circle up
-  }
-  
-  // Target the BG circle specifically
-  .hero-section .w-32.h-32 {
-    margin-top: 0 !important; // Remove margin to move BG circle up
+.stat-number {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+// ─── Scroll indicator ─────────────────────────────────────────────────────────
+.scroll-hint {
+  animation: bounce-slow 3s ease-in-out infinite;
+
+  &:hover .scroll-mouse {
+    border-color: var(--accent);
   }
 }
 
-// Extra small mobile devices
-@media (max-width: 480px) {
-  .hero-section {
-    padding: 5rem 1rem 2rem 1rem; // Adjusted top padding for new layout
-    min-height: 100vh; // Ensure full height
-  }
-  
-  .hero-title {
-    font-size: 2rem;
-    margin-top: 1rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.1rem;
-  }
-  
-  .hero-description {
-    font-size: 0.9rem;
-  }
-  
-  // Profile image spacing for very small mobile - more specific targeting
-  .hero-section .mb-8 {
-    margin-top: 0.5rem !important; // Reduced margin to move BG circle up
-  }
-  
-  // Target the BG circle specifically
-  .hero-section .w-32.h-32 {
-    margin-top: 0 !important; // Remove margin to move BG circle up
-  }
-}
-
-// Dark mode adjustments - force light mode colors
-.dark .animate-blob {
-  opacity: 0.7 !important;
-  filter: blur(40px) !important;
-}
-
-html.dark .animate-blob {
-  opacity: 0.7 !important;
-  filter: blur(40px) !important;
-}
-
-// Dark mode text improvements - force light mode colors
-.dark .hero-title {
-  text-shadow: none !important;
-  color: #111827 !important;
-}
-
-html.dark .hero-title {
-  text-shadow: none !important;
-  color: #111827 !important;
-}
-
-.dark .hero-subtitle {
-  text-shadow: none !important;
-  color: #374151 !important;
-}
-
-html.dark .hero-subtitle {
-  text-shadow: none !important;
-  color: #374151 !important;
-}
-
-.dark .hero-description {
-  text-shadow: none !important;
-  color: #6b7280 !important;
-}
-
-html.dark .hero-description {
-  text-shadow: none !important;
-  color: #6b7280 !important;
-}
-
-// Force light mode colors for all hero section elements - same in both modes
-.dark .hero-section * {
-  color: inherit !important;
-}
-
-html.dark .hero-section * {
-  color: inherit !important;
-}
-
-// Specific overrides for stats cards - same in both modes
-.dark .hero-section .text-gray-600 {
-  color: #6b7280 !important;
-}
-
-html.dark .hero-section .text-gray-600 {
-  color: #6b7280 !important;
-}
-
-// Override any dark mode text colors in hero section - same in both modes
-.dark .hero-section .text-gray-900 {
-  color: #111827 !important;
-}
-
-html.dark .hero-section .text-gray-900 {
-  color: #111827 !important;
-}
-
-.dark .hero-section .text-gray-700 {
-  color: #374151 !important;
-}
-
-html.dark .hero-section .text-gray-700 {
-  color: #374151 !important;
-}
-
-// Additional overrides to ensure consistency
-.dark .hero-section .text-blue-600 {
-  color: #2563eb !important;
-}
-
-html.dark .hero-section .text-blue-600 {
-  color: #2563eb !important;
-}
-
-.dark .hero-section .text-purple-600 {
-  color: #7c3aed !important;
-}
-
-html.dark .hero-section .text-purple-600 {
-  color: #7c3aed !important;
-}
-
-.dark .hero-section .text-green-600 {
-  color: #059669 !important;
-}
-
-html.dark .hero-section .text-green-600 {
-  color: #059669 !important;
-}
-
-.dark .hero-section .text-orange-600 {
-  color: #ea580c !important;
-}
-
-html.dark .hero-section .text-orange-600 {
-  color: #ea580c !important;
-}
-
-// Force white background for stats cards in both modes
-.dark .hero-section .bg-white\/80 {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-}
-
-html.dark .hero-section .bg-white\/80 {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-}
-
-// Force gray borders for stats cards in both modes
-.dark .hero-section .border-gray-200 {
-  border-color: #e5e7eb !important;
-}
-
-html.dark .hero-section .border-gray-200 {
-  border-color: #e5e7eb !important;
-}
-
-// Force light mode for buttons and description in both modes
-.dark .hero-section .hero-description {
-  color: #6b7280 !important;
-  background-color: transparent !important;
-}
-
-html.dark .hero-section .hero-description {
-  color: #6b7280 !important;
-  background-color: transparent !important;
-}
-
-// Force light mode for buttons in both modes
-.dark .hero-section .hero-buttons button {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
-  color: white !important;
-  border-color: #2563eb !important;
-}
-
-html.dark .hero-section .hero-buttons button {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
-  color: white !important;
-  border-color: #2563eb !important;
-}
-
-// Force light mode for outline button in both modes
-.dark .hero-section .hero-buttons button:last-child {
-  background: transparent !important;
-  color: #2563eb !important;
-  border-color: #2563eb !important;
-}
-
-html.dark .hero-section .hero-buttons button:last-child {
-  background: transparent !important;
-  color: #2563eb !important;
-  border-color: #2563eb !important;
-}
-
-// Force light mode for outline button hover in both modes
-.dark .hero-section .hero-buttons button:last-child:hover {
-  background: #2563eb !important;
-  color: white !important;
-}
-
-html.dark .hero-section .hero-buttons button:last-child:hover {
-  background: #2563eb !important;
-  color: white !important;
-}
-
-// Force light mode for all text elements in hero section
-.dark .hero-section p,
-.dark .hero-section span,
-.dark .hero-section div {
-  color: inherit !important;
-}
-
-html.dark .hero-section p,
-html.dark .hero-section span,
-html.dark .hero-section div {
-  color: inherit !important;
-}
-
-// Force light mode for description text specifically
-.dark .hero-section .hero-description,
-.dark .hero-section p.hero-description {
-  color: #6b7280 !important;
-  background-color: transparent !important;
-}
-
-html.dark .hero-section .hero-description,
-html.dark .hero-section p.hero-description {
-  color: #6b7280 !important;
-  background-color: transparent !important;
-}
-
-// Force light mode for all text content in hero section
-.dark .hero-section .text-gray-600 {
-  color: #6b7280 !important;
-}
-
-html.dark .hero-section .text-gray-600 {
-  color: #6b7280 !important;
-}
-
-// Force light mode for all button text
-.dark .hero-section button span,
-.dark .hero-section button i {
-  color: inherit !important;
-}
-
-html.dark .hero-section button span,
-html.dark .hero-section button i {
-  color: inherit !important;
-}
-
-// Comprehensive override for all text elements in hero section
-.dark .hero-section * {
-  color: inherit !important;
-}
-
-html.dark .hero-section * {
-  color: inherit !important;
-}
-
-// Force specific colors for different text types
-.dark .hero-section .text-gray-900 {
-  color: #111827 !important;
-}
-
-html.dark .hero-section .text-gray-900 {
-  color: #111827 !important;
-}
-
-.dark .hero-section .text-gray-700 {
-  color: #374151 !important;
-}
-
-html.dark .hero-section .text-gray-700 {
-  color: #374151 !important;
-}
-
-.dark .hero-section .text-gray-600 {
-  color: #6b7280 !important;
-}
-
-html.dark .hero-section .text-gray-600 {
-  color: #6b7280 !important;
-}
-
-// Force button colors
-.dark .hero-section .text-white {
-  color: white !important;
-}
-
-html.dark .hero-section .text-white {
-  color: white !important;
-}
-
-.dark .hero-section .text-blue-600 {
-  color: #2563eb !important;
-}
-
-html.dark .hero-section .text-blue-600 {
-  color: #2563eb !important;
-}
-
-// Specific button overrides for both modes
-.dark .hero-section .hero-btn-primary {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
-  color: white !important;
-}
-
-html.dark .hero-section .hero-btn-primary {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
-  color: white !important;
-}
-
-.dark .hero-section .hero-btn-primary:hover {
-  background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%) !important;
-  color: white !important;
-}
-
-html.dark .hero-section .hero-btn-primary:hover {
-  background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%) !important;
-  color: white !important;
-}
-
-.dark .hero-section .hero-btn-secondary {
-  background: transparent !important;
-  color: #2563eb !important;
-  border-color: #2563eb !important;
-}
-
-html.dark .hero-section .hero-btn-secondary {
-  background: transparent !important;
-  color: #2563eb !important;
-  border-color: #2563eb !important;
-}
-
-.dark .hero-section .hero-btn-secondary:hover {
-  background: #2563eb !important;
-  color: white !important;
-}
-
-html.dark .hero-section .hero-btn-secondary:hover {
-  background: #2563eb !important;
-  color: white !important;
-}
-
-// Profile Views Counter Animation
-.profile-views-number {
-  position: relative;
-  display: inline-block;
-  
-  &.animate-pulse {
-    animation: viewsPulse 1s ease-in-out;
-  }
-}
-
-@keyframes viewsPulse {
-  0% {
-    transform: scale(1);
-    color: #dc2626;
-  }
-  50% {
-    transform: scale(1.1);
-    color: #ef4444;
-  }
-  100% {
-    transform: scale(1);
-    color: #dc2626;
-  }
-}
-
-// Force red color for profile views in both modes
-.dark .hero-section .text-red-600 {
-  color: #dc2626 !important;
-}
-
-html.dark .hero-section .text-red-600 {
-  color: #dc2626 !important;
+.scroll-mouse {
+  width: 22px;
+  height: 36px;
+  border: 1.5px solid var(--text-3);
+  border-radius: 99px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+  transition: border-color 0.2s;
+}
+
+.scroll-wheel {
+  width: 3px;
+  height: 8px;
+  border-radius: 99px;
+  background: var(--text-3);
+  animation: scroll-wheel 2s ease-in-out infinite;
+}
+
+@keyframes scroll-wheel {
+  0%   { transform: translateY(0); opacity: 1; }
+  80%  { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(-6px); }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 640px) {
+  .hero-name { letter-spacing: -0.03em; }
+  .blob-1 { width: 300px; height: 300px; }
+  .blob-2 { width: 250px; height: 250px; }
+  .blob-3 { width: 200px; height: 200px; }
 }

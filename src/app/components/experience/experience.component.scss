@@ -1,170 +1,92 @@
-// Timeline styles
+// ─── Timeline wrapper ─────────────────────────────────────────────────────────
+.timeline-wrap {
+  padding-left: 1.25rem;
+
+  @media (min-width: 1024px) { padding-left: 1.5rem; }
+}
+
+// ─── Vertical line ────────────────────────────────────────────────────────────
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 60%, transparent 100%);
+  border-radius: 99px;
+  opacity: 0.35;
+}
+
+// ─── Timeline item ────────────────────────────────────────────────────────────
 .timeline-item {
   position: relative;
-  
-  &.timeline-left {
-    .card {
-      margin-right: auto;
-      padding-right: 2rem;
-    }
-  }
-  
-  &.timeline-right {
-    .card {
-      margin-left: auto;
-      padding-left: 2rem;
-    }
-  }
 }
 
-// Timeline dot styles
+// ─── Dot ─────────────────────────────────────────────────────────────────────
 .timeline-dot {
   position: absolute;
-  left: 50%;
-  top: 2rem;
-  transform: translateX(-50%);
-  width: 24px;
-  height: 24px;
-  background: var(--primary-color);
+  left: -1.5rem;
+  top: 1.5rem;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  border: 4px solid white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 10;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateX(-50%) scale(1.2);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 1;
+
+  @media (min-width: 1024px) {
+    left: -1.75rem;
+    width: 16px;
+    height: 16px;
+  }
+
+  &--current {
+    border-color: #10b981;
+    box-shadow: 0 0 12px rgba(16,185,129,0.45);
+  }
+
+  .timeline-item:hover & {
+    transform: scale(1.25);
+    box-shadow: 0 0 14px rgba(99,102,241,0.5);
   }
 }
 
-// Card hover effects
-.card {
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+.timeline-dot-inner {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+
+  .timeline-dot--current & {
+    background: #10b981;
   }
 }
 
-// Technology tags
-.tech-tag {
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+// ─── Exp card ─────────────────────────────────────────────────────────────────
+.exp-card {
+  // Uses global .card styles + extra spacing
 }
 
-// Status badge styles
-.status-badge {
-  transition: all 0.3s ease;
-  
-  &.current {
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: white;
-  }
-  
-  &.past {
-    background: linear-gradient(135deg, #6b7280, #4b5563);
-    color: white;
-  }
-}
+// ─── Badge ────────────────────────────────────────────────────────────────────
+.exp-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 99px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: rgba(148,163,184,0.12);
+  color: var(--text-3);
+  border: 1px solid var(--border);
+  white-space: nowrap;
 
-// Responsive timeline
-@media (max-width: 1024px) {
-  .timeline-line {
-    display: none;
-  }
-  
-  .timeline-dot {
-    display: none;
-  }
-  
-  .timeline-item {
-    &.timeline-left,
-    &.timeline-right {
-      .card {
-        margin: 0 auto;
-        padding: 1.5rem;
-      }
-    }
-  }
-}
-
-// Animation classes
-.fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.slide-in-left {
-  animation: slideInLeft 0.6s ease-out;
-}
-
-.slide-in-right {
-  animation: slideInRight 0.6s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-// Enhanced focus states
-button:focus,
-a:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-}
-
-// Loading states
-.loading {
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-// Print styles
-@media print {
-  .card {
-    box-shadow: none;
-    border: 1px solid #e5e7eb;
-  }
-  
-  .timeline-dot {
-    box-shadow: none;
-  }
-  
-  .timeline-line {
-    background: #e5e7eb;
+  &--current {
+    background: rgba(16,185,129,0.1);
+    color: #10b981;
+    border-color: rgba(16,185,129,0.25);
   }
 }

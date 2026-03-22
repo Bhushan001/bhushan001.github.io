@@ -1,104 +1,92 @@
-// About section styles
-.about-section {
-  padding: 5rem 0;
-  background: #f8fafc;
-  
-  .dark & {
-    background: #1e293b;
+// ─── Icon pill ────────────────────────────────────────────────────────────────
+.icon-pill {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(99,102,241,0.12);
+  color: var(--accent);
+  flex-shrink: 0;
+
+  &--violet {
+    background: rgba(139,92,246,0.12);
+    color: var(--accent-2);
+  }
+
+  &--cyan {
+    background: rgba(6,182,212,0.12);
+    color: var(--accent-3);
   }
 }
 
-// Card styles
-.card {
-  background: white;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-  
-  .dark & {
-    background: #334155;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  }
-  
+// ─── Fact item ────────────────────────────────────────────────────────────────
+.fact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.625rem;
+  background: rgba(99,102,241,0.04);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, background 0.2s;
+
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    
-    .dark & {
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-    }
+    border-color: rgba(99,102,241,0.2);
+    background: rgba(99,102,241,0.07);
   }
 }
 
-// Progress bar animations
-.progress-bar {
-  transition: width 1.5s ease-out;
-  background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
-  border-radius: 0.5rem;
-  height: 0.5rem;
+// ─── Competency bar ───────────────────────────────────────────────────────────
+.bar-track {
+  width: 100%;
+  height: 5px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
 }
 
-// Text gradient effect
-.text-gradient {
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.bar-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-// Hobby cards
-.hobby-card {
-  transition: all 0.3s ease;
-  
+// ─── Education ────────────────────────────────────────────────────────────────
+.edu-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.edu-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 0.375rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(99,102,241,0.5);
+}
+
+// ─── Hobby chip ───────────────────────────────────────────────────────────────
+.hobby-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 99px;
+  background: rgba(99,102,241,0.07);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+  cursor: default;
+
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    
-    .dark & {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-  }
-}
-
-// Animation classes
-.about-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
-  
-  &.animate {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Responsive design
-@media (max-width: 768px) {
-  .about-section {
-    padding: 3rem 0;
-  }
-  
-  .card {
-    padding: 1.5rem;
-  }
-}
-
-// Dark mode adjustments
-.dark {
-  .about-section {
-    background: #1e293b;
-  }
-  
-  .card {
-    background: #334155;
-  }
-  
-  .hobby-card {
-    background: #475569;
-    
-    &:hover {
-      background: #64748b;
-    }
+    background: rgba(99,102,241,0.13);
+    border-color: rgba(99,102,241,0.25);
+    transform: translateY(-1px);
   }
 }

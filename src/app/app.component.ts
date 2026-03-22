@@ -34,6 +34,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   activeSection = 'home';
   private observer: IntersectionObserver | null = null;
 
+  navLinks = [
+    { id: 'home',       label: 'Home',       icon: 'fas fa-house' },
+    { id: 'about',      label: 'About',      icon: 'fas fa-user' },
+    { id: 'skills',     label: 'Skills',     icon: 'fas fa-code' },
+    { id: 'experience', label: 'Experience', icon: 'fas fa-briefcase' },
+    { id: 'projects',   label: 'Projects',   icon: 'fas fa-layer-group' },
+    { id: 'awards',     label: 'Awards',     icon: 'fas fa-trophy' },
+    { id: 'contact',    label: 'Contact',    icon: 'fas fa-envelope' },
+  ];
+
   ngOnInit() {
     // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem('theme');

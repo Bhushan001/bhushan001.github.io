@@ -1,73 +1,44 @@
-<section id="awards" class="py-20 bg-white dark:bg-dark-900">
+<section id="awards" class="section-padding bg-[var(--bg-alt)]">
   <div class="container-custom">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-        Awards & <span class="text-gradient">Certifications</span>
-      </h2>
-      <div class="w-24 h-1 bg-gradient-to-r from-primary-600 to-purple-600 mx-auto rounded-full"></div>
+
+    <!-- Header -->
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="fas fa-trophy text-xs"></i> Awards</div>
+      <h2>Achievements & <span class="text-gradient">Certifications</span></h2>
+      <p>Recognition spanning performance, technical expertise and competitive wins.</p>
+      <div class="section-line"></div>
     </div>
 
-    <!-- Awards Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div *ngFor="let award of awards" 
-           class="award-card card group hover:transform hover:scale-105 transition-all duration-300">
-        
-        <!-- Award Icon -->
-        <div class="text-center mb-6">
-          <div class="w-20 h-20 mx-auto bg-gradient-to-r from-primary-600 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl shadow-lg group-hover:shadow-xl transition-shadow">
-            <i [class]="award.icon + ' award-icon'"></i>
+    <!-- Awards grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div *ngFor="let award of awards; let i = index"
+           class="card award-card group reveal reveal-scale"
+           [class]="'delay-' + (i + 1)">
+
+        <!-- Icon + Year -->
+        <div class="flex items-start justify-between mb-4">
+          <div class="award-icon-wrap" [style.background]="getAwardGlow(award.year)">
+            <i [class]="award.icon + ' text-lg text-white'"></i>
           </div>
+          <span class="award-year-badge" [style.color]="getAwardAccent(award.year)"
+                [style.background]="getAwardGlow(award.year)"
+                [style.border-color]="getAwardAccent(award.year) + '30'">
+            {{ award.year }}
+          </span>
         </div>
 
-        <!-- Award Content -->
-        <div class="text-center">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-            {{ award.title }}
-          </h3>
-          
-          <div class="flex items-center justify-center space-x-2 mb-3">
-            <span class="text-sm font-semibold text-primary-600 dark:text-primary-400">
-              {{ award.issuer }}
-            </span>
-            <span class="inline-block px-2 py-1 text-xs font-medium rounded-full {{ getAwardColor(award.year) }}">
-              {{ award.year }}
-            </span>
-          </div>
-          
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-            {{ award.description }}
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Awards Summary -->
-    <div class="mt-16">
-      <div class="card text-center">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          <i class="fas fa-trophy text-primary-600 mr-3"></i>
-          Recognition Summary
+        <!-- Content -->
+        <h3 class="text-base font-bold text-[var(--text-1)] mb-1 group-hover:text-[var(--accent)] transition-colors duration-200 leading-snug">
+          {{ award.title }}
         </h3>
-        <div class="grid md:grid-cols-4 gap-6">
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600 mb-2">{{ awards.length }}</div>
-            <div class="text-gray-600 dark:text-gray-400">Total Awards</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-green-600 mb-2">{{ getPerformanceAwardsCount() }}</div>
-            <div class="text-gray-600 dark:text-gray-400">Performance Awards</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-blue-600 mb-2">{{ getCertificationsCount() }}</div>
-            <div class="text-gray-600 dark:text-gray-400">Certifications</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-purple-600 mb-2">{{ getCompetitionWinsCount() }}</div>
-            <div class="text-gray-600 dark:text-gray-400">Competition Wins</div>
-          </div>
-        </div>
+        <p class="text-xs font-semibold text-[var(--accent)] mb-3 opacity-80">{{ award.issuer }}</p>
+        <p class="text-sm text-[var(--text-2)] leading-relaxed">{{ award.description }}</p>
+
+        <!-- Shimmer line -->
+        <div class="award-shimmer mt-4"></div>
+
       </div>
     </div>
+
   </div>
 </section>

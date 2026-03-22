@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { PortfolioService } from '../../shared/services/portfolio.service';
 import { ContactService, ContactFormData } from '../../shared/services/contact.service';
 import { ContactInfo } from '../../shared/models/portfolio.models';
-import { gsap } from 'gsap';
-
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -38,50 +36,18 @@ export class ContactComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.initContactAnimations();
-  }
-
-  private initContactAnimations() {
-    // Animate contact section on scroll
-    const contactElements = document.querySelectorAll('.contact-animate');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const element = entry.target as HTMLElement;
-          
-          gsap.fromTo(element, 
-            {
-              opacity: 0,
-              y: 30
-            },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power2.out'
-            }
-          );
+    const els = document.querySelectorAll<HTMLElement>(
+      '#contact .reveal, #contact .reveal-left, #contact .reveal-right'
+    );
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).classList.add('revealed');
+          io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.3 });
-
-    contactElements.forEach(element => observer.observe(element));
-
-    // Animate contact info cards
-    gsap.fromTo('.contact-info-card', 
-      {
-        opacity: 0,
-        x: -50
-      },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'power2.out'
-      }
-    );
+    }, { threshold: 0.1 });
+    els.forEach(el => io.observe(el));
   }
 
   onSubmit() {
@@ -98,7 +64,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
       };
 
       this.contactService.submitContactForm(formData).subscribe({
-        next: (response) => {
+        next: (_response) => {
           this.isSubmitting = false;
           this.submitSuccess = true;
           
@@ -115,7 +81,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
             this.submitSuccess = false;
           }, 5000);
         },
-        error: (error) => {
+        error: (_error) => {
           this.isSubmitting = false;
           this.submitError = true;
           this.errorMessage = 'Failed to send message. Please try again later.';

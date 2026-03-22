@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioService } from '../../shared/services/portfolio.service';
 import { Award } from '../../shared/models/portfolio.models';
-import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-awards',
@@ -17,81 +16,38 @@ export class AwardsComponent implements OnInit, AfterViewInit {
   constructor(private portfolioService: PortfolioService) {}
 
   ngOnInit() {
-    this.portfolioService.getAwards().subscribe(awards => {
-      this.awards = awards;
-    });
+    this.portfolioService.getAwards().subscribe(a => { this.awards = a; });
   }
 
   ngAfterViewInit() {
-    this.initAwardsAnimations();
-  }
-
-  private initAwardsAnimations() {
-    // Animate award cards on scroll
-    const awardCards = document.querySelectorAll('.award-card');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const card = entry.target as HTMLElement;
-          
-          gsap.fromTo(card, 
-            {
-              opacity: 0,
-              y: 50,
-              scale: 0.9
-            },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.8,
-              ease: 'power2.out'
-            }
-          );
+    const els = document.querySelectorAll<HTMLElement>('#awards .reveal, #awards .reveal-scale');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).classList.add('revealed');
+          io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.2 });
-
-    awardCards.forEach(card => observer.observe(card));
-
-    // Stagger animation for award icons
-    gsap.fromTo('.award-icon', 
-      {
-        opacity: 0,
-        scale: 0,
-        rotation: -180
-      },
-      {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'back.out(1.7)'
-      }
-    );
+    }, { threshold: 0.1 });
+    els.forEach(el => io.observe(el));
   }
 
-  getAwardColor(year: string): string {
-    const currentYear = new Date().getFullYear();
-    const awardYear = parseInt(year);
-    
-    if (year === 'Multiple Years') return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
-    if (awardYear === currentYear) return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
-    if (awardYear >= currentYear - 2) return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-    return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
+  private readonly palette: Record<string, [string, string]> = {
+    recent:   ['rgba(99,102,241,0.15)',  '#818cf8'],
+    mid:      ['rgba(6,182,212,0.13)',   '#22d3ee'],
+    older:    ['rgba(139,92,246,0.13)',  '#a78bfa'],
+    multiple: ['rgba(251,191,36,0.13)',  '#fbbf24'],
+  };
+
+  private getKey(year: string): string {
+    if (year === 'Multiple Years') return 'multiple';
+    const y = parseInt(year);
+    const now = new Date().getFullYear();
+    if (y >= now - 1)  return 'recent';
+    if (y >= now - 3)  return 'mid';
+    return 'older';
   }
 
-  getPerformanceAwardsCount(): number {
-    return this.awards.filter(a => a.year === '2019').length;
-  }
-
-  getCertificationsCount(): number {
-    return this.awards.filter(a => a.title.includes('Expert') || a.title.includes('Certification')).length;
-  }
-
-  getCompetitionWinsCount(): number {
-    return this.awards.filter(a => a.title.includes('Chess')).length;
-  }
+  getAwardGlow(year: string): string  { return this.palette[this.getKey(year)][0]; }
+  getAwardAccent(year: string): string { return this.palette[this.getKey(year)][1]; }
 }

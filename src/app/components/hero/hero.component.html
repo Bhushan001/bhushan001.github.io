@@ -1,86 +1,81 @@
-<section id="home" class="hero-section relative min-h-screen flex items-start justify-center overflow-hidden pt-20">
-  <!-- Background with parallax effect - same in both modes -->
-  <div class="hero-background absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50"></div>
-  
-  <!-- Animated background elements -->
-  <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute top-20 left-20 w-72 h-72 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-    <div class="absolute top-40 right-20 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-    <div class="absolute -bottom-8 left-40 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-  </div>
+<section id="home" class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
 
-  <!-- Main content -->
-  <div class="container-custom relative z-10 text-center py-8">
-    <div class="max-w-4xl mx-auto">
-      <!-- Profile image placeholder -->
-      <div class="mb-8">
-        <div class="w-32 h-32 mx-auto bg-gradient-to-r from-primary-600 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-2xl hover:scale-110 transition-transform duration-300">
-          BG
-        </div>
+  <!-- ── Background layers ─────────────────────────────────────────── -->
+  <div class="hero-bg-base absolute inset-0"></div>
+
+  <!-- Mesh gradient blobs -->
+  <div class="blob blob-1 absolute rounded-full pointer-events-none"></div>
+  <div class="blob blob-2 absolute rounded-full pointer-events-none"></div>
+  <div class="blob blob-3 absolute rounded-full pointer-events-none"></div>
+
+  <!-- Dot grid -->
+  <div class="dot-grid absolute inset-0 pointer-events-none"></div>
+
+  <!-- Subtle top border glow -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-40 pointer-events-none"></div>
+
+  <!-- ── Content ───────────────────────────────────────────────────── -->
+  <div class="container-custom relative z-10 py-20 text-center">
+
+    <!-- Status badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--border)] bg-[var(--card-bg)] text-sm text-[var(--text-2)] mb-8 animate-fade-in backdrop-blur-sm">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      Available for new opportunities
+    </div>
+
+    <!-- Avatar -->
+    <div class="avatar-wrap mx-auto mb-8 relative w-fit animate-scale-in" style="animation-delay:0.1s">
+      <div class="avatar-ring"></div>
+      <div class="avatar w-28 h-28 rounded-2xl flex items-center justify-center text-white font-black text-3xl relative z-10">
+        BG
       </div>
+    </div>
 
-      <!-- Hero title - same in both modes -->
-      <h1 class="hero-title text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-        Hi, I'm <span class="text-gradient">Bhushan Gadekar</span>
-      </h1>
+    <!-- Name -->
+    <h1 class="hero-name font-black tracking-tight text-[var(--text-1)] mb-4 animate-fade-up" style="animation-delay:0.2s">
+      Bhushan Gadekar
+    </h1>
 
-      <!-- Animated subtitle - same in both modes -->
-      <h2 class="hero-subtitle text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
-        I'm a <span class="text-blue-600 min-w-[300px] inline-block">{{ currentText }}<span class="animate-pulse">|</span></span>
-      </h2>
+    <!-- Role typewriter -->
+    <p class="hero-role text-xl md:text-2xl font-medium text-[var(--text-2)] mb-6 animate-fade-up" style="animation-delay:0.3s">
+      I'm a&nbsp;<span class="text-gradient font-semibold">{{ currentText }}</span><span class="cursor-blink">|</span>
+    </p>
 
-      <!-- Description - same in both modes -->
-      <p class="hero-description text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-        Senior Engineer (User Experience) with 10+ years of experience building scalable web applications and microservices.
-        Passionate about creating innovative solutions and mentoring development teams.
-      </p>
+    <!-- Description -->
+    <p class="hero-desc max-w-2xl mx-auto text-[var(--text-2)] leading-relaxed mb-10 animate-fade-up" style="animation-delay:0.4s">
+      Senior Engineer (User Experience) with 10+ years crafting scalable web applications and microservices.
+      Passionate about clean architecture, developer experience and growing high-performing teams.
+    </p>
 
-      <!-- Call to action buttons - same in both modes -->
-      <div class="hero-buttons flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-        <button 
-          (click)="downloadResume()"
-          class="hero-btn-primary px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-3">
-          <i class="fas fa-download text-lg"></i>
-          <span>Download Resume</span>
-        </button>
-        
-        <button 
-          (click)="openContact()"
-          class="hero-btn-secondary px-10 py-4 border-2 border-blue-600 text-blue-600 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transform hover:scale-105 transition-all duration-300 flex items-center space-x-3">
-          <i class="fas fa-envelope text-lg"></i>
-          <span>Contact Me</span>
-        </button>
-      </div>
+    <!-- CTAs -->
+    <div class="flex flex-wrap gap-4 justify-center mb-16 animate-fade-up" style="animation-delay:0.5s">
+      <button (click)="downloadResume()" class="btn-primary">
+        <i class="fas fa-download text-sm"></i>
+        Download Resume
+      </button>
+      <button (click)="openContact()" class="btn-outline">
+        <i class="fas fa-paper-plane text-sm"></i>
+        Get in Touch
+      </button>
+    </div>
 
-      <!-- Quick stats - same in both modes -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8">
-        <div class="text-center p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg">
-          <div class="text-3xl font-bold text-blue-600 mb-2">10+</div>
-          <div class="text-sm text-gray-600">Years Experience</div>
-        </div>
-        <div class="text-center p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg">
-          <div class="text-3xl font-bold text-purple-600 mb-2">20+</div>
-          <div class="text-sm text-gray-600">Projects Completed</div>
-        </div>
-        <div class="text-center p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg">
-          <div class="text-3xl font-bold text-green-600 mb-2">5+</div>
-          <div class="text-sm text-gray-600">Companies Worked</div>
-        </div>
-        <div class="text-center p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg">
-          <div class="text-3xl font-bold text-orange-600 mb-2">15+</div>
-          <div class="text-sm text-gray-600">Technologies</div>
-        </div>
+    <!-- Stats -->
+    <div class="stats-row grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto animate-fade-up" style="animation-delay:0.6s">
+      <div *ngFor="let stat of stats" class="stat-card">
+        <div class="stat-number text-gradient">{{ stat.display }}</div>
+        <div class="stat-label text-[var(--text-3)]">{{ stat.label }}</div>
       </div>
     </div>
   </div>
 
-</section>
-
-<!-- Floating scroll indicator -->
-<div class="fixed bottom-8 right-8 z-50">
-  <button 
-    (click)="scrollToSection('about')"
-    class="w-12 h-12 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center group">
-    <i class="fas fa-chevron-down text-lg group-hover:animate-bounce"></i>
+  <!-- Scroll indicator -->
+  <button (click)="scrollToSection('about')"
+          class="scroll-hint absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[var(--text-3)] text-xs hover:text-[var(--accent)] transition-colors duration-200 cursor-pointer bg-transparent border-none animate-fade-in"
+          style="animation-delay:1s">
+    <span class="font-medium tracking-widest uppercase text-[0.65rem]">Scroll</span>
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
+    </div>
   </button>
-</div>
+
+</section>

@@ -18,7 +18,7 @@
         <!-- Icon + Year -->
         <div class="flex items-start justify-between mb-4">
           <div class="award-icon-wrap" [style.background]="getAwardGlow(award.year)">
-            <i [class]="award.icon + ' text-lg text-white'"></i>
+            <i [class]="award.icon + ' text-lg'" [style.color]="getAwardAccent(award.year)"></i>
           </div>
           <span class="award-year-badge" [style.color]="getAwardAccent(award.year)"
                 [style.background]="getAwardGlow(award.year)"

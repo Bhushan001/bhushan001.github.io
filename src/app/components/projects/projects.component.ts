@@ -2,12 +2,10 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioService } from '../../shared/services/portfolio.service';
 import { Project } from '../../shared/models/portfolio.models';
-import { SafeHtmlPipe } from '../../shared/pipes/safe-html.pipe';
-
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, SafeHtmlPipe],
+  imports: [CommonModule],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
@@ -55,8 +53,18 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
     if (url) window.open(url, '_blank');
   }
 
-  getProjectThumbnail(cat: string): string {
-    return this.portfolioService.getProjectThumbnail(cat);
+  getThumbConfig(cat: string): { icon: string; from: string; to: string } {
+    const map: Record<string, { icon: string; from: string; to: string }> = {
+      'E-commerce':     { icon: 'fas fa-shopping-bag',    from: '#6366f1', to: '#a855f7' },
+      'Healthcare':     { icon: 'fas fa-heartbeat',       from: '#ec4899', to: '#f43f5e' },
+      'Finance':        { icon: 'fas fa-chart-line',      from: '#0ea5e9', to: '#6366f1' },
+      'Analytics':      { icon: 'fas fa-chart-bar',       from: '#14b8a6', to: '#0ea5e9' },
+      'Productivity':   { icon: 'fas fa-tasks',           from: '#f59e0b', to: '#ef4444' },
+      'Social':         { icon: 'fas fa-users',           from: '#8b5cf6', to: '#ec4899' },
+      'Education':      { icon: 'fas fa-graduation-cap', from: '#10b981', to: '#0ea5e9' },
+      'Infrastructure': { icon: 'fas fa-server',          from: '#64748b', to: '#475569' },
+    };
+    return map[cat] ?? { icon: 'fas fa-code',             from: '#6366f1', to: '#8b5cf6' };
   }
 
   getLiveDemosCount(): number  { return this.projects.filter(p => p.liveUrl).length; }

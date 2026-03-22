@@ -28,7 +28,9 @@
         <!-- Thumbnail -->
         <div class="project-thumb rounded-lg mb-4 overflow-hidden relative">
           <div class="thumb-inner flex items-center justify-center"
-               [innerHTML]="getProjectThumbnail(project.category) | safeHtml">
+               [style.background]="'linear-gradient(135deg,' + getThumbConfig(project.category).from + '18,' + getThumbConfig(project.category).to + '2a)'">
+            <i [class]="getThumbConfig(project.category).icon + ' text-4xl'"
+               [style.color]="getThumbConfig(project.category).from"></i>
           </div>
           <!-- Overlay -->
           <div class="thumb-overlay absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300">

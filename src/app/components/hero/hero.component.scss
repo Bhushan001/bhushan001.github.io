@@ -149,45 +149,6 @@ html:not(.dark) .blob-3 { background: rgba(6,182,212,0.04);  }
   text-transform: uppercase;
 }
 
-// ─── Scroll indicator ─────────────────────────────────────────────────────────
-.scroll-hint {
-  animation: bounce-slow 3s ease-in-out infinite;
-
-  &:hover .scroll-mouse {
-    border-color: var(--accent);
-  }
-}
-
-.scroll-mouse {
-  width: 22px;
-  height: 36px;
-  border: 1.5px solid var(--text-3);
-  border-radius: 99px;
-  display: flex;
-  justify-content: center;
-  padding-top: 6px;
-  transition: border-color 0.2s;
-}
-
-.scroll-wheel {
-  width: 3px;
-  height: 8px;
-  border-radius: 99px;
-  background: var(--text-3);
-  animation: scroll-wheel 2s ease-in-out infinite;
-}
-
-@keyframes scroll-wheel {
-  0%   { transform: translateY(0); opacity: 1; }
-  80%  { transform: translateY(12px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 0; }
-}
-
-@keyframes bounce-slow {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(-6px); }
-}
-
 // ─── Responsive ───────────────────────────────────────────────────────────────
 @media (max-width: 640px) {
   .hero-name { letter-spacing: -0.03em; }
